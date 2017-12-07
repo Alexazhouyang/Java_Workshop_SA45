@@ -1,25 +1,21 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import exception.NotFoundException;
 import model.User;
-import service.UserService;
 
 /**
  * Servlet implementation class Authenticate
  */
 @WebServlet("/Authenticate")
 public class Authenticate extends HttpServlet {
-	
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -43,57 +39,30 @@ public class Authenticate extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doProcess(request, response);
+		doProcess(request,response);
 	}
 
-	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		String path;
+		
+//		response.sendRedirect(request.getContextPath()+"/Home.jsp");
+		
 		String u = request.getParameter("username");
 		String p = request.getParameter("password");
 		
-		User user = new User();
-		user.setName(u);
-		user.setPassword(p);
 		
-		UserService service;
-		User loginUser;
+		//judge 
 		
-		
-		
-		try {
-		 	 service = new UserService();
-	    	 loginUser = service.authenticate(user);
-	    	 HttpSession session = request.getSession();
-	    	 session.setAttribute("profile", loginUser);
-	    	 
-		} catch (NotFoundException e) {
-			e.printStackTrace();
-			throw new ServletException();
+		if(u.equals("Alexa")&&p.equals("123"))
+		{
+//			response.sendRedirect(request.getContextPath()+"/Home.jsp");
+			request.getRequestDispatcher("/Home.jsp").forward(request, response);
 		}
-		
-		if(service.checkLoginUser(user)){
-			User lu = (User)request.getSession().getAttribute("profile");
-			
-			if (lu.getRole().equals("admin")){	
-				
-				path = "/LogOut";
-				
-			}
-			else{
-				
-				path = "/LogOut";
-			}
-		}
-		else{
+		else {
 			request.setAttribute("error","Invalid Username or Password !!");
-			path = "/pages/login.jsp";
+			response.sendRedirect(request.getContextPath()+"/pages/login.jsp");
 		}
-		
-		RequestDispatcher rd = request.getRequestDispatcher( path);
-		rd.forward(request, response);
-	}
-		
-
+	
+		}
 
 }

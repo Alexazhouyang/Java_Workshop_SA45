@@ -1,13 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!doctype html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Light Bootstrap Dashboard PRO by Creative Tim</title>
+	<title>Team11_Stockist</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -66,7 +67,6 @@
 
 </head>
 <body>
-<a href = "controller/Authenticate">access to Authenticate</a>
 
 <div class="wrapper">
     <div class="sidebar" data-color="orange" data-image="../assets/img/full-screen-image-3.jpg">
@@ -78,13 +78,13 @@
         -->
 
         <div class="logo">
-            <a href="http://www.creative-tim.com" class="logo-text">
-                Creative Tim
+            <a href="admin.jsp" class="logo-text">
+                Team11
             </a>
         </div>
 		<div class="logo logo-mini">
-			<a href="http://www.creative-tim.com" class="logo-text">
-				Ct
+			<a href="admin.jsp" class="logo-text">
+				T11
 			</a>
 		</div>
 
@@ -96,14 +96,14 @@
                 </div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                       <%=request.getParameter("username") %>
+                        <%=request.getParameter("username") %>
                         <b class="caret"></b>
                     </a>
                     <div class="collapse" id="collapseExample">
                         <ul class="nav">
-                            <li><a href="#">My Profile</a></li>
-                            <li><a href="#">Edit Profile</a></li>
-                            <li><a href="#">Settings</a></li>
+                            <li><a href="pages/login.jsp">Login</a></li>
+                            <li><a href="pages/login.jsp">Logout</a></li>
+                            <li><a href="admin.jsp">Settings</a></li>
                         </ul>
                     </div>
                 </div>
@@ -111,111 +111,47 @@
 
             <ul class="nav">
                 <li>
-                    <a href="dashboard.html">
+                    <a href="user.jsp">
                         <i class="pe-7s-graph"></i>
-                        <p>Dashboard</p>
+                        <p>Manage User</p>
                     </a>
                 </li>
                 <li>
-                    <a data-toggle="collapse" href="#componentsExamples">
+                    <a href="product.jsp">
                         <i class="pe-7s-plugin"></i>
-                        <p>Components
-                           <b class="caret"></b>
-                        </p>
+                        <p>Manage Products</p>
                     </a>
-                    <div class="collapse" id="componentsExamples">
-                        <ul class="nav">
-                            <li><a href="components/buttons.html">Buttons</a></li>
-                            <li><a href="components/grid.html">Grid System</a></li>
-                            <li><a href="components/icons.html">Icons</a></li>
-                            <li><a href="components/notifications.html">Notifications</a></li>
-                            <li><a href="components/panels.html">Panels</a></li>
-                            <li><a href="components/sweet-alert.html">Sweet Alert</a></li>
-                            <li><a href="components/typography.html">Typography</a></li>
-                        </ul>
-                    </div>
+                   
                 </li>
 
                 <li>
-                    <a data-toggle="collapse" href="#formsExamples">
+                    <a href="supplier.jsp">
                         <i class="pe-7s-note2"></i>
-                        <p>Forms
-                           <b class="caret"></b>
-                        </p>
-                    </a>
-                    <div class="collapse" id="formsExamples">
-                        <ul class="nav">
-                            <li><a href="forms/regular.html">Regular Forms</a></li>
-                            <li><a href="forms/extended.html">Extended Forms</a></li>
-                            <li><a href="forms/validation.html">Validation Forms</a></li>
-                            <li><a href="forms/wizard.html">Wizard</a></li>
-                        </ul>
-                    </div>
+                        <p>Manage Supplier</p>
+                    </a>                   
                 </li>
-
                 <li>
-                    <a data-toggle="collapse" href="#tablesExamples">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>Tables
-                           <b class="caret"></b>
-                        </p>
-                    </a>
-                    <div class="collapse" id="tablesExamples">
-                        <ul class="nav">
-                            <li><a href="tables/regular.html">Regular Tables</a></li>
-                            <li><a href="tables/extended.html">Extended Tables</a></li>
-                            <li><a href="tables/bootstrap-table.html">Bootstrap Table</a></li>
-							<li><a href="tables/datatables.net.html">DataTables.net</a></li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li>
-                    <a data-toggle="collapse" href="#mapsExamples">
-                        <i class="pe-7s-map-marker"></i>
-                        <p>Maps
-                           <b class="caret"></b>
-                        </p>
-                    </a>
-                    <div class="collapse" id="mapsExamples">
-                        <ul class="nav">
-                            <li><a href="maps/google.html">Google Maps</a></li>
-                            <li><a href="maps/vector.html">Vector Maps</a></li>
-                            <li><a href="maps/fullscreen.html">Full Screen Map</a></li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="active">
-                    <a href="charts.html">
-                        <i class="pe-7s-graph1"></i>
-                        <p>Charts</p>
+                    <a href="reorder.jsp">
+                         <i class="pe-7s-graph1"></i>
+                        <p>Reorder</p>
                     </a>
                 </li>
 
                 <li>
-                    <a href="calendar.html">
-                        <i class="pe-7s-date"></i>
-                        <p>Calendar</p>
+                    <a href="report.jsp">
+                         <i class="pe-7s-news-paper"></i>
+                        <p>Print Report</p>
                     </a>
                 </li>
 
                 <li>
-                    <a data-toggle="collapse" href="#pagesExamples">
-                        <i class="pe-7s-gift"></i>
-                        <p>Pages
-                           <b class="caret"></b>
+                    <a  href="email.jsp">
+                        <i class="pe-7s-mail"></i>
+                        <p>Sent Email
+                          
                         </p>
                     </a>
-                    <div class="collapse" id="pagesExamples">
-                        <ul class="nav">
-                            <li><a href="pages/login.html">Login Page</a></li>
-                            <li><a href="pages/register.html">Register Page</a></li>
-                            <li><a href="pages/lock.html">Lock Screen Page</a></li>
-                            <li><a href="pages/user.html">User Page</a></li>
-                            <li><a href="#">More coming soon...</a></li>
-                        </ul>
-                    </div>
+                   
                 </li>
             </ul>
     	</div>
@@ -237,7 +173,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Charts</a>
+                    <a class="navbar-brand" href="#">Stokist</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -249,49 +185,7 @@
                     </form>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="charts.html">
-                                <i class="fa fa-line-chart"></i>
-                                <p>Stats</p>
-                            </a>
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-gavel"></i>
-                                <p class="hidden-md hidden-lg">
-                                    Actions
-                                    <b class="caret"></b>
-                                </p>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Create New Post</a></li>
-                                <li><a href="#">Manage Something</a></li>
-                                <li><a href="#">Do Nothing</a></li>
-                                <li><a href="#">Submit to live</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Another Action</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-bell-o"></i>
-                                <span class="notification">5</span>
-                                <p class="hidden-md hidden-lg">
-    								Notifications
-    								<b class="caret"></b>
-    							</p>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                            </ul>
-                        </li>
-
+                       
                         <li class="dropdown dropdown-with-icons">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-list"></i>
@@ -302,26 +196,37 @@
                             </a>
                             <ul class="dropdown-menu dropdown-with-icons">
                                 <li>
-                                    <a href="#">
-                                        <i class="pe-7s-mail"></i> Messages
+                                    <a href="user.jsp">
+                                        <i class="pe-7s-graph"></i> Manage User
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        <i class="pe-7s-help1"></i> Help Center
+                                    <a href="product.jsp">
+                                        <i class="pe-7s-plugin"></i> Manage Products
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="supplier.jsp">
+                                        <i class="pe-7s-note2"></i> Manage Supplier
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="reorder.jsp">
+                                        <i class="pe-7s-graph1"></i> Reorder
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="report.jsp">
+                                        <i class="pe-7s-news-paper"></i> Print Report
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="information.jsp">
                                         <i class="pe-7s-tools"></i> Settings
                                     </a>
                                 </li>
                                 <li class="divider"></li>
-                                <li>
-                                    <a href="#">
-                                        <i class="pe-7s-lock"></i> Lock Screen
-                                    </a>
-                                </li>
+                              
                                 <li>
                                     <a href="#" class="text-danger">
                                         <i class="pe-7s-close-circle"></i>
@@ -339,128 +244,20 @@
 
 
         <div class="content">
-            <div class="container-fluid">
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="header">
-                                24 Hours Performance
-                                <p class="category">Line Chart</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartPerformance" class="ct-chart "></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="header">
-                                NASDAQ: AAPL
-                                <p class="category">Line Chart with Points</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartStock" class="ct-chart "></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="header">
-                                Users Behavior
-                                <p class="category">Multiple Lines Charts</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartBehaviour" class="ct-chart "></div>
-                            </div>
-                            <div class="footer">
-                                <h6>Legend</h6>
-                                 <i class="fa fa-circle text-info"></i> Visited Site
-                                 <i class="fa fa-circle text-danger"></i> Register
-                                 <i class="fa fa-circle text-warning"></i> Login 2nd time
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="header">
-                                Public Preferences
-                                <p class="category">Pie Chart</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartPreferences" class="ct-chart "></div>
-                            </div>
-                            <div class="footer">
-                                <h6>Legend</h6>
-                                 <i class="fa fa-circle text-info"></i> Apple
-                                 <i class="fa fa-circle text-warning"></i> Samsung
-                                 <i class="fa fa-circle text-danger"></i> Windows Phone
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="header">
-                                Views
-                                <p class="category">Bar Chart</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartViews" class="ct-chart "></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="header">
-                                Activity
-                                <p class="category">Multiple Bars Chart</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartActivity" class="ct-chart "></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        
+        <!-- Main Content in put here -->
+        <!-- Main Content in put here -->
+         <!-- Main Content in put here -->
+         <!-- Main Content in put here -->
+         <!-- Main Content in put here -->
+         
         </div>
 
         <footer class="footer">
             <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Company
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                               Blog
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+            
                 <p class="copyright pull-right">
-                    &copy; 2016 <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                    &copy; 2017 <a href="https://github.com/NUS-ISS-Team11/Team11_Stockist.git">Team11_Stockist</a>, made with love for a better web
                 </p>
             </div>
         </footer>
@@ -545,7 +342,7 @@
                 </a>
             </li>
 
-           
+            
 
         </ul>
     </div>

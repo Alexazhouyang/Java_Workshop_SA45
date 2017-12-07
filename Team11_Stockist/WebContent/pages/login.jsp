@@ -66,7 +66,7 @@
 
 </head>
 <body> 
-
+<!-- head nav -->
 <nav class="navbar navbar-transparent navbar-absolute">
     <div class="container">    
         <div class="navbar-header">
@@ -76,7 +76,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../dashboard.html">Team11_Stockist</a>
+            <a class="navbar-brand" href="login.jsp">Team11_Stockist</a>
         </div>
         <div class="collapse navbar-collapse">       
             
@@ -91,7 +91,7 @@
     </div>
 </nav>
 
-
+<!-- MAIN CONTENT LOGIN-->
 <div class="wrapper wrapper-full-page">
     <div class="full-page login-page" data-color="orange" data-image="../../assets/img/full-screen-image-1.jpg">   
         
@@ -100,7 +100,7 @@
             <div class="container">
                 <div class="row">                   
                     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                        <form action="../Authenticate" name = "login" method="post">
+                        <form action="../index.jsp" name = "login" method="post">
                             
                         <!--   if you want to have the card without animation please remove the ".card-hidden" class   -->
                             <div class="card card-hidden">
@@ -109,6 +109,7 @@
                                     <div class="form-group">
                                         <label>Username</label>
                                         <input type="username" name ="username" placeholder="Username" required="required" class="form-control">
+                                    
                                     </div>
                                     <div class="form-group">
                                         <label>Password</label>
@@ -131,12 +132,12 @@
                 </div>
             </div>
         </div>
-    	
+    	<!-- footer -->
     	<footer class="footer footer-transparent">
             <div class="container">
                 
                 <p class="copyright pull-right">
-                    &copy; 2016 <a href="http://www.Team11_Stockist.com">Team11_Stockist</a>, made with love for a better web
+                    &copy; 2017 <a href="https://github.com/NUS-ISS-Team11/Team11_Stockist.git">Team11_Stockist</a>, made with love for a better web
                 </p>
             </div>
         </footer>
@@ -146,7 +147,7 @@
 </div>
 
 
-
+<!-- fix style -->
 <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
         <a href="#" data-toggle="dropdown"> 
