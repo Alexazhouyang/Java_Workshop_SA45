@@ -125,7 +125,7 @@
                 </li>
 
                 <li>
-                    <a href="supplier.jsp">
+                    <a href="supplierViewServlet">
                         <i class="pe-7s-note2"></i>
                         <p>Manage Supplier</p>
                     </a>                   
@@ -206,7 +206,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="supplier.jsp">
+                                    <a href="supplierViewServlet">
                                         <i class="pe-7s-note2"></i> Manage Supplier
                                     </a>
                                 </li>
@@ -254,24 +254,27 @@
                                 <h4 class="title">Edit Profile</h4>
                             </div>
                             <div class="content">
+                            
                                 <form>
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                <label>Company (disabled)</label>
-                                                <input type="text" class="form-control" disabled placeholder="Company" value="Creative Code Inc.">
+                                                <label>Role</label>
+                                                <input type="text" class="form-control" disabled placeholder="Role" value="Administrater">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Username</label>
-                                                <input type="text" class="form-control" placeholder="Username" value="michael23">
+                                                
+                                                <input type="text" class="form-control" placeholder="UserName" value="${username}">
+                                        
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" class="form-control" placeholder="Email">
+                                                <input type="email" class="form-control" placeholder="Email" value = "${email}">
                                             </div>
                                         </div>
                                     </div>
@@ -280,13 +283,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>First Name</label>
-                                                <input type="text" class="form-control" placeholder="Company" value="Mike">
+                                                <input type="text" class="form-control" placeholder="First Name" value="${firstname}">
+                                                
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Last Name</label>
-                                                <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                                                <input type="text" class="form-control" placeholder="Last Name" value="${lastname}">
                                             </div>
                                         </div>
                                     </div>
@@ -295,7 +299,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Address</label>
-                                                <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                                <input type="text" class="form-control" placeholder="Home Address" value="${address}">
                                             </div>
                                         </div>
                                     </div>
@@ -303,32 +307,36 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>City</label>
-                                                <input type="text" class="form-control" placeholder="City" value="Mike">
+                                                <label>Password</label>
+                                                <input type="text" class="form-control" placeholder="Password" value="${password}">
                                             </div>
                                         </div>
+                                        
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Country</label>
-                                                <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                                                <label>PhoneNumber</label>
+                                                <input type="text" class="form-control" placeholder="PhoneNumber" value="${phonenumber}">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                       <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Postal Code</label>
-                                                <input type="number" class="form-control" placeholder="ZIP Code">
+                                                
+                                                
                                             </div>
                                         </div>
                                     </div>
+
+                               
 
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>About Me</label>
-                                                <textarea rows="5" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                                <textarea rows="5" class="form-control" placeholder="Here can be your description" value="Here can be your description">"<%=request.getParameter("description") %>"</textarea>
                                             </div>
                                         </div>
                                     </div>
+                                        
 
                                     <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
                                     <div class="clearfix"></div>
@@ -346,14 +354,12 @@
                                      <a href="#">
                                     <img class="avatar border-gray" src="picture/default-avatar.png" alt="..."/>
 
-                                      <h4 class="title">Tania Andrew<br />
-                                         <small>michael24</small>
+                                      <h4 class="title"><%=request.getParameter("username") %><br />
+                                         <small><%=request.getParameter("firstname") %> <%=request.getParameter("lastname") %></small>
                                       </h4>
                                     </a>
                                 </div>
-                                <p class="description text-center"> "Lamborghini Mercy <br>
-                                                    Your chick she so thirsty <br>
-                                                    I'm in that two seat Lambo"
+                                <p class="description text-center"> "<%=request.getParameter("description") %>"
                                 </p>
                             </div>
                             <hr>

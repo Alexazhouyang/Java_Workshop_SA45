@@ -8,7 +8,7 @@
 	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Manage User</title>
+	<title>Team11_Stockist</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -78,12 +78,12 @@
         -->
 
         <div class="logo">
-            <a href="admin.jsp" class="logo-text">
+            <a href="mechanic.jsp" class="logo-text">
                 Team11
             </a>
         </div>
 		<div class="logo logo-mini">
-			<a href="admin.jsp" class="logo-text">
+			<a href="mechanic.jsp" class="logo-text">
 				T11
 			</a>
 		</div>
@@ -101,7 +101,7 @@
                     </a>
                     <div class="collapse" id="collapseExample">
                         <ul class="nav">
-                           <li><a href="pages/login.jsp">Login</a></li>
+                            <li><a href="pages/login.jsp">Login</a></li>
                             <li><a href="pages/login.jsp">Logout</a></li>
                             <li><a href="admin.jsp">Settings</a></li>
                         </ul>
@@ -111,49 +111,35 @@
 
             <ul class="nav">
                 <li>
-                    <a href="user.jsp">
+                    <a href="catalog.jsp">
                         <i class="pe-7s-graph"></i>
-                        <p>Manage User</p>
+                        <p>Browse Catalog</p>
                     </a>
                 </li>
                 <li>
-                    <a href="product.jsp">
+                    <a href="view_product.jsp">
                         <i class="pe-7s-plugin"></i>
-                        <p>Manage Products</p>
+                        <p>View Products</p>
                     </a>
                    
                 </li>
 
                 <li>
-                    <a href="supplierViewServlet">
+                    <a href="usage.jsp">
                         <i class="pe-7s-note2"></i>
-                        <p>Manage Supplier</p>
+                        <p>Record Usage</p>
                     </a>                   
                 </li>
-                <li>
-                    <a href="reorder.jsp">
-                         <i class="pe-7s-graph1"></i>
-                        <p>Reorder</p>
-                    </a>
-                </li>
-                
+               
 
                 <li>
-                    <a href="report.jsp">
+                    <a href="usage_report.jsp">
                          <i class="pe-7s-news-paper"></i>
                         <p>Print Report</p>
                     </a>
                 </li>
 
-                <li>
-                    <a  href="email.jsp">
-                        <i class="pe-7s-mail"></i>
-                        <p>Sent Email
-                          
-                        </p>
-                    </a>
-                   
-                </li>
+                
             </ul>
     	</div>
     </div>
@@ -174,7 +160,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Manage User</a>
+                    <a class="navbar-brand" href="#">Stokist</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -197,32 +183,28 @@
                             </a>
                             <ul class="dropdown-menu dropdown-with-icons">
                                 <li>
-                                    <a href="user.jsp">
-                                        <i class="pe-7s-graph"></i> Manage User
+                                    <a href="catalog.jsp">
+                                        <i class="pe-7s-graph"></i> Browse Catalog
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="product.jsp">
-                                        <i class="pe-7s-plugin"></i> Manage Products
+                                    <a href="view_product.jsp">
+                                        <i class="pe-7s-plugin"></i> View Products
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="supplierViewServlet">
-                                        <i class="pe-7s-note2"></i> Manage Supplier
+                                    <a href="usage.jsp">
+                                        <i class="pe-7s-note2"></i> Record Usage
                                     </a>
                                 </li>
+                                
                                 <li>
-                                    <a href="reorder.jsp">
-                                        <i class="pe-7s-graph1"></i> Reorder
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="report.jsp">
+                                    <a href="usage_report.jsp">
                                         <i class="pe-7s-news-paper"></i> Print Report
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="information.jsp">
+                                    <a href="mechanic.jsp">
                                         <i class="pe-7s-tools"></i> Settings
                                     </a>
                                 </li>
@@ -248,196 +230,7 @@
         
         <!-- Main Content in put here -->
         <!-- Main Content in put here -->
-        <div class="content">
-            <div class="container-fluid">
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-
-                           <div class="fixed-table-toolbar"><div class="bars pull-left"><div class="toolbar">
-                                <!--        Here you can write extra buttons/actions for the toolbar              -->
-                            </div></div><div class="columns columns-right pull-right">
-                            <button class="btn btn-default" type="button" name="refresh" title="Refresh">
-                            <i class="glyphicon fa fa-refresh"></i>
-                            </button>
-                            <button class="btn btn-default" type="button" name="toggle" title="Toggle">
-                            <i class="glyphicon fa fa-th-list"></i>
-                            </button>
-                            <div class="keep-open btn-group" title="Columns">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <i class="glyphicon fa fa-columns"></i>
-                            <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                            <li>
-                            <label><input data-field="id" value="1" checked="checked" type="checkbox"> ID</label>
-                            </li>
-                            <li>
-                            <label><input data-field="name" value="2" checked="checked" type="checkbox"> Name</label>
-                            </li>
-                            <li>
-                            <label><input data-field="salary" value="3" checked="checked" type="checkbox"> Salary</label>
-                            </li>
-                            <li>
-                            <label><input data-field="country" value="4" checked="checked" type="checkbox"> Country</label>
-                            </li>
-                            <li>
-                            <label><input data-field="city" value="5" checked="checked" type="checkbox"> City</label>
-                            </li>
-                            <li>
-                            <label><input data-field="actions" value="6" checked="checked" type="checkbox"> Actions</label>
-                            </li>
-                            </ul>
-                            </div>
-                            </div>
-                            <div class="pull-left search"><input class="form-control" placeholder="Search" type="text">
-                            </div>
-                            </div>
-                            <div class="fixed-table-container" style="padding-bottom: 0px;">
-                            <div class="fixed-table-header" style="display: none;">
-                            <table>
-                            </table>
-                            </div>
-                            <div class="fixed-table-body">
-                            <div class="fixed-table-loading" style="top: 42px;">Loading, please wait...</div>
-                            <table id="bootstrap-table" class="table table-hover">
-                                <thead>
-                                <tr>
-                                <th class="bs-checkbox " style="width: 36px; " data-field="state">
-                                <div class="th-inner ">
-                                <input name="btSelectAll" type="checkbox">
-                                </div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th class="text-center" style="" data-field="id">
-                                <div class="th-inner ">ID</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th style="" data-field="name">
-                                <div class="th-inner sortable both">Name</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th style="" data-field="salary">
-                                <div class="th-inner sortable both">Salary</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th style="" data-field="country">
-                                <div class="th-inner sortable both">Country</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th style="" data-field="city">
-                                <div class="th-inner ">City</div>
-                                <div class="fht-cell"></div>
-                                </th><th class="td-actions text-right" style="" data-field="actions">
-                                <div class="th-inner ">Actions</div><div class="fht-cell">
-                                </div></th>
-                                </tr></thead>
-                                <tbody>
-                                
-                                <tr data-index="0">
-                                <td class="bs-checkbox"><input data-index="0" name="btSelectItem" type="checkbox"></td>
-                                <td class="text-center" style="">1</td>
-                                <td style="">Dakota Rice</td>
-                                <td style="">$36,738</td>                               
-                                <td style="">Niger</td>
-                                <td style="">Oud-Turnhout</td>
-                                
-                                <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image">
-                                </i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
-                                <i class="fa fa-edit">
-                                </i></a><a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove">
-                                </i></a>
-                                </td></tr>
-                                
-                                <tr data-index="1">
-                                <td class="bs-checkbox">
-                                <input data-index="1" name="btSelectItem" type="checkbox">
-                                </td>
-                                <td class="text-center" style="">2</td>
-                                <td style="">Minerva Hooper</td>
-                                <td style="">$23,789</td>
-                                <td style="">Curaçao</td>
-                                <td style="">Sinaai-Waas</td>
-                                <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
-                                <i class="fa fa-edit"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove"></i></a>
-                                </td></tr>
-                                
-                                <tr data-index="2">
-                                <td class="bs-checkbox">
-                                <input data-index="2" name="btSelectItem" type="checkbox">
-                                </td>
-                                <td class="text-center" style="">3</td>
-                                <td style="">Sage Rodriguez</td>
-                                <td style="">$56,142</td>
-                                <td style="">Netherlands</td>
-                                <td style="">Baileux</td>
-                                <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
-                                <i class="fa fa-edit"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove"></i></a>
-                                </td></tr>
-                                
-                                <tr data-index="3">
-                                <td class="bs-checkbox">
-                                <input data-index="3" name="btSelectItem" type="checkbox">
-                                </td>
-                                <td class="text-center" style="">4</td>
-                                <td style="">Philip Chaney</td>
-                                <td style="">$38,735</td>
-                                <td style="">Korea, South</td>
-                                <td style="">Overland Park</td>
-                                <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
-                                <i class="fa fa-edit"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove"></i></a>
-                                </td></tr>
-                                
-                                <tr data-index="4">
-                                <td class="bs-checkbox">
-                                <input data-index="4" name="btSelectItem" type="checkbox"></td>
-                                <td class="text-center" style="">5</td>
-                                <td style="">Doris Greene</td>
-                                <td style="">$63,542</td>
-                                <td style="">Malawi</td>
-                                <td style="">Feldkirchen in Kärnten</td>
-                                <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
-                                <i class="fa fa-edit"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove"></i></a>
-                                </td></tr>
-                                
-                            <table>
-                            <tbody>
-                            <tr></tr>
-                            </tbody>
-                            </table>
-                            </div>
-                          </div>
-                        </div><!--  end card  -->
-                    </div> <!-- end col-md-12 -->
-                </div> <!-- end row -->
-
-            </div>
-        </div>
+         <!-- Main Content in put here -->
          <!-- Main Content in put here -->
          <!-- Main Content in put here -->
          

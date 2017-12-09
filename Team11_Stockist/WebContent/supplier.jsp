@@ -1,9 +1,36 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@page import="entity.Supplier"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%ArrayList<Supplier> list =(ArrayList<Supplier>) (request.getAttribute("list")); %>
 
 <!doctype html>
 <html lang="en">
 <head>
+<!-- checked  -->
+    <script type="text/javascript">
+        
+        function chickAll(){
+        // 全选方法
+            var chickobj = document.getElementsByName("num");
+            for(var i = 0 ; i<chickobj.length ; i++){
+            
+                chickobj[i].checked = "checked";
+            }
+            
+        }
+        function Nochick(){
+        // 反选方法   
+            var chickobj = document.getElementsByName("num");
+            for(var i = 0 ; i<chickobj.length ; i++){
+            
+                chickobj[i].checked = !chickobj[i].checked ;
+            }
+            
+        }
+    </script>
+    
+    
 	<meta charset="utf-8" />
 	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -96,7 +123,7 @@
                 </div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                        <%=request.getParameter("username") %>
+                        <%=request.getSession().getAttribute("username") %>
                         <b class="caret"></b>
                     </a>
                     <div class="collapse" id="collapseExample">
@@ -125,7 +152,7 @@
                 </li>
 
                 <li>
-                    <a href="supplier.jsp">
+                    <a href="supplierViewServlet">
                         <i class="pe-7s-note2"></i>
                         <p>Manage Supplier</p>
                     </a>                   
@@ -206,7 +233,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="supplier.jsp">
+                                    <a href="supplierViewServlet">
                                         <i class="pe-7s-note2"></i> Manage Supplier
                                     </a>
                                 </li>
@@ -255,46 +282,35 @@
                         <div class="card">
 
                            <div class="fixed-table-toolbar"><div class="bars pull-left"><div class="toolbar">
-                                <!--        Here you can write extra buttons/actions for the toolbar              -->
-                            </div></div><div class="columns columns-right pull-right">
-                            <button class="btn btn-default" type="button" name="refresh" title="Refresh">
-                            <i class="glyphicon fa fa-refresh"></i>
+                                <!--        Here you can write extra buttons/actions for the toolbar   
+                                           -->                          
+                            
+                            </div></div>
+                            <form action="supplierSearchServlet" method="post" > 
+                            
+                             <div class=" pull-left" style="width:50%">
+                            <div class="search" ><input class="form-control" style="width:100% ; margin:10px 10px 0 0" placeholder="Search" type="text" name ="supplierName">                                                       
+                            </div>
+                            </div>
+                            <div class=" columns columns-right pull-right" style="margin:10px">
+                             <button class="btn btn-default" style="margin:0 10px 0 0" type="submit" name="SEARCH" value="Search"> SEARCH                           
+                            </button>   
+                           </form>
+                            <button class=" btn btn-default" type="button" name="refresh" title="Refresh" >
+                            <a href="supplierViewServlet"><font color="gray">REFRESH</font></a>
                             </button>
-                            <button class="btn btn-default" type="button" name="toggle" title="Toggle">
-                            <i class="glyphicon fa fa-th-list"></i>
-                            </button>
-                            <div class="keep-open btn-group" title="Columns">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <i class="glyphicon fa fa-columns"></i>
-                            <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                            <li>
-                            <label><input data-field="id" value="1" checked="checked" type="checkbox"> ID</label>
-                            </li>
-                            <li>
-                            <label><input data-field="name" value="2" checked="checked" type="checkbox"> Name</label>
-                            </li>
-                            <li>
-                            <label><input data-field="salary" value="3" checked="checked" type="checkbox"> Salary</label>
-                            </li>
-                            <li>
-                            <label><input data-field="country" value="4" checked="checked" type="checkbox"> Country</label>
-                            </li>
-                            <li>
-                            <label><input data-field="city" value="5" checked="checked" type="checkbox"> City</label>
-                            </li>
-                            <li>
-                            <label><input data-field="actions" value="6" checked="checked" type="checkbox"> Actions</label>
-                            </li>
-                            </ul>
+                            
+                           
                             </div>
+                           
+                            
+                            
                             </div>
-                            <div class="pull-left search"><input class="form-control" placeholder="Search" type="text">
-                            </div>
-                            </div>
+                           
+                           
                             <div class="fixed-table-container" style="padding-bottom: 0px;">
                             <div class="fixed-table-header" style="display: none;">
+                            
                             <table>
                             </table>
                             </div>
@@ -314,115 +330,66 @@
                                 <div class="fht-cell">
                                 </div></th>
                                 <th style="" data-field="name">
-                                <div class="th-inner sortable both">Name</div>
+                                <div class="th-inner ">Name</div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th style="" data-field="salary">
-                                <div class="th-inner sortable both">Salary</div>
+                                <th style="" data-field="contactnumber">
+                                <div class="th-inner ">ContactNumber</div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th style="" data-field="country">
-                                <div class="th-inner sortable both">Country</div>
+                                <th style="" data-field="email">
+                                <div class="th-inner">Email</div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th style="" data-field="city">
-                                <div class="th-inner ">City</div>
-                                <div class="fht-cell"></div>
-                                </th><th class="td-actions text-right" style="" data-field="actions">
+                                <th class="td-actions text-right" style="" data-field="actions">
                                 <div class="th-inner ">Actions</div><div class="fht-cell">
                                 </div></th>
                                 </tr></thead>
                                 <tbody>
                                 
-                                <tr data-index="0">
-                                <td class="bs-checkbox"><input data-index="0" name="btSelectItem" type="checkbox"></td>
-                                <td class="text-center" style="">1</td>
-                                <td style="">Dakota Rice</td>
-                                <td style="">$36,738</td>                               
-                                <td style="">Niger</td>
-                                <td style="">Oud-Turnhout</td>
+                                <!-- ADD -->
+                                <form action="supplierAddServlet" metohd="post" >
+                                <tr >
+                                <td></td>
+                                <td class="text-center " style=""></td>
+                                
+                                <td style=""><input class="form-control" style="width:200px" type="text" name="supplierName" placeholder="SupplierName" /></td>                               
+                                <td style=""><input class="form-control" style="width:200px" type="text" name="contactNumber"placeholder="ContactNumber"/></td>
+                                <td style=""><input  class="form-control" style="width:200px" type="text" name="email"placeholder="Email"/></td>
                                 
                                 <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image">
-                                </i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
+                                
+                                <button class="btn btn-default" type="submit" name="add" title="Add">
+                             ADD</button>
+                              
+                               
+                                </td></tr>
+                                </form>
+                                
+                                <!-- list detail & operation -->
+                                 <%for(int i = 0 ; i<list.size();i++) { 
+                                	 Supplier supplier = list.get(i);%>
+                                
+                                <tr data-index="<%=supplier.getSupplierID() %>">
+                                <td class="bs-checkbox"><input value="<%=supplier.getSupplierID()%>" data-index="<%=supplier.getSupplierID() %>" name="num" type="checkbox"></td>
+                                <td class="text-center" style=""><font color="black"><%=supplier.getSupplierID() %></font></td>
+                                <td style=""><a href="supplierViewServlet?userId=<%=supplier.getSupplierID() %>" ><font color="black"><%=supplier.getSupplierName()%></font></a></td>
+                                                              
+                                <td style=""><font color="black"><%=supplier.getContactNumber() %></font></td>
+                                <td style=""><font color="black"><%=supplier.getEmail() %></font></td>
+                                
+                                <td class="td-actions text-right" style="">
+                              
+                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="supplierUpdateServlet?userId=<%=supplier.getSupplierID() %>" data-original-title="Edit">
                                 <i class="fa fa-edit">
-                                </i></a><a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
+                                </i></a><a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="supplierDeleteOneServlet?userId=<%=supplier.getSupplierID()%>" data-original-title="Remove">
                                 <i class="fa fa-remove">
                                 </i></a>
                                 </td></tr>
-                                
-                                <tr data-index="1">
-                                <td class="bs-checkbox">
-                                <input data-index="1" name="btSelectItem" type="checkbox">
-                                </td>
-                                <td class="text-center" style="">2</td>
-                                <td style="">Minerva Hooper</td>
-                                <td style="">$23,789</td>
-                                <td style="">Curaçao</td>
-                                <td style="">Sinaai-Waas</td>
-                                <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
-                                <i class="fa fa-edit"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove"></i></a>
-                                </td></tr>
-                                
-                                <tr data-index="2">
-                                <td class="bs-checkbox">
-                                <input data-index="2" name="btSelectItem" type="checkbox">
-                                </td>
-                                <td class="text-center" style="">3</td>
-                                <td style="">Sage Rodriguez</td>
-                                <td style="">$56,142</td>
-                                <td style="">Netherlands</td>
-                                <td style="">Baileux</td>
-                                <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
-                                <i class="fa fa-edit"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove"></i></a>
-                                </td></tr>
-                                
-                                <tr data-index="3">
-                                <td class="bs-checkbox">
-                                <input data-index="3" name="btSelectItem" type="checkbox">
-                                </td>
-                                <td class="text-center" style="">4</td>
-                                <td style="">Philip Chaney</td>
-                                <td style="">$38,735</td>
-                                <td style="">Korea, South</td>
-                                <td style="">Overland Park</td>
-                                <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
-                                <i class="fa fa-edit"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove"></i></a>
-                                </td></tr>
-                                
-                                <tr data-index="4">
-                                <td class="bs-checkbox">
-                                <input data-index="4" name="btSelectItem" type="checkbox"></td>
-                                <td class="text-center" style="">5</td>
-                                <td style="">Doris Greene</td>
-                                <td style="">$63,542</td>
-                                <td style="">Malawi</td>
-                                <td style="">Feldkirchen in Kärnten</td>
-                                <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
-                                <i class="fa fa-edit"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove"></i></a>
-                                </td></tr>
+                                 <% 
+                                 }
+                                 %>
+                                                              
                                 
                             <table>
                             <tbody>

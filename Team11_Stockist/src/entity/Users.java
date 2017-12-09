@@ -8,9 +8,10 @@ public class Users {
 	private String email;
 	private String phonenumber;
 	private String address;
+	private String description;
 	private String password;
 	private String role;
-	public Users(Integer userID,String username, String firstname, String lastname, String email, String phonenumber, String address,
+	public Users(Integer userID,String username, String firstname, String lastname, String email, String phonenumber, String address,String description,
 			String password, String role) {
 		super();
 		this.userID = userID;
@@ -20,6 +21,7 @@ public class Users {
 		this.email = email;
 		this.phonenumber = phonenumber;
 		this.address = address;
+		this.description = description;
 		this.password = password;
 		this.role = role;
 	}
@@ -28,6 +30,12 @@ public class Users {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public int getUserID() {
 		return userID;
 	}
@@ -85,8 +93,9 @@ public class Users {
 	@Override
 	public String toString() {
 		return "Users [userid="+userID+"usertname=" + username + ", firstname=" + firstname + ", lastname=" + lastname + ", email="
-				+ email + ", phonenumber=" + phonenumber + ", address=" + address + ", password=" + password + ", role="
+				+ email + ", phonenumber=" + phonenumber + ", address=" + address + ", description=" + description +", password=" + password + ", role="
 				+ role + "]";
 	}
 	
+
 }

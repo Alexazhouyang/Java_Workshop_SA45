@@ -125,7 +125,7 @@
                 </li>
 
                 <li>
-                    <a href="supplier.jsp">
+                    <a href="supplierViewServlet">
                         <i class="pe-7s-note2"></i>
                         <p>Manage Supplier</p>
                     </a>                   
@@ -206,7 +206,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="supplier.jsp">
+                                    <a href="supplierViewServlet">
                                         <i class="pe-7s-note2"></i> Manage Supplier
                                     </a>
                                 </li>

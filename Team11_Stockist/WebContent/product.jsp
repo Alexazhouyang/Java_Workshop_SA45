@@ -1,9 +1,34 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@page import="entity.Supplier"%>
+<%@page import="entity.Products"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%ArrayList<Products> list =(ArrayList<Products>) (request.getAttribute("list")); %>
 <!doctype html>
 <html lang="en">
 <head>
+<!-- checked  -->
+    <script type="text/javascript">
+        
+        function chickAll(){
+        // 全选方法
+            var chickobj = document.getElementsByName("num");
+            for(var i = 0 ; i<chickobj.length ; i++){
+            
+                chickobj[i].checked = "checked";
+            }
+            
+        }
+        function Nochick(){
+        // 反选方法   
+            var chickobj = document.getElementsByName("num");
+            for(var i = 0 ; i<chickobj.length ; i++){
+            
+                chickobj[i].checked = !chickobj[i].checked ;
+            }
+            
+        }
+    </script>
 	<meta charset="utf-8" />
 	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -125,7 +150,7 @@
                 </li>
 
                 <li>
-                    <a href="supplier.jsp">
+                    <a href="supplierViewServlet">
                         <i class="pe-7s-note2"></i>
                         <p>Manage Supplier</p>
                     </a>                   
@@ -206,7 +231,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="supplier.jsp">
+                                    <a href="supplierViewServlet">
                                         <i class="pe-7s-note2"></i> Manage Supplier
                                     </a>
                                 </li>
@@ -255,46 +280,35 @@
                         <div class="card">
 
                            <div class="fixed-table-toolbar"><div class="bars pull-left"><div class="toolbar">
-                                <!--        Here you can write extra buttons/actions for the toolbar              -->
-                            </div></div><div class="columns columns-right pull-right">
-                            <button class="btn btn-default" type="button" name="refresh" title="Refresh">
-                            <i class="glyphicon fa fa-refresh"></i>
+                                <!--        Here you can write extra buttons/actions for the toolbar   
+                                           -->                          
+                            
+                            </div></div>
+                            <form action="productSearchServlet" method="post" > 
+                            
+                             <div class=" pull-left" style="width:50%">
+                            <div class="search" ><input class="form-control" style="width:100% ; margin:10px 10px 0 0" placeholder="Search" type="text" name ="productName">                                                       
+                            </div>
+                            </div>
+                            <div class=" columns columns-right pull-right" style="margin:10px">
+                             <button class="btn btn-default" style="margin:0 10px 0 0" type="submit" name="SEARCH" value="Search"> SEARCH                           
+                            </button>   
+                           </form>
+                            <button class=" btn btn-default" type="button" name="refresh" title="Refresh" >
+                            <a href="productViewServlet"><font color="gray">REFRESH</font></a>
                             </button>
-                            <button class="btn btn-default" type="button" name="toggle" title="Toggle">
-                            <i class="glyphicon fa fa-th-list"></i>
-                            </button>
-                            <div class="keep-open btn-group" title="Columns">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <i class="glyphicon fa fa-columns"></i>
-                            <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                            <li>
-                            <label><input data-field="id" value="1" checked="checked" type="checkbox"> ID</label>
-                            </li>
-                            <li>
-                            <label><input data-field="name" value="2" checked="checked" type="checkbox"> Name</label>
-                            </li>
-                            <li>
-                            <label><input data-field="salary" value="3" checked="checked" type="checkbox"> Salary</label>
-                            </li>
-                            <li>
-                            <label><input data-field="country" value="4" checked="checked" type="checkbox"> Country</label>
-                            </li>
-                            <li>
-                            <label><input data-field="city" value="5" checked="checked" type="checkbox"> City</label>
-                            </li>
-                            <li>
-                            <label><input data-field="actions" value="6" checked="checked" type="checkbox"> Actions</label>
-                            </li>
-                            </ul>
+                            
+                           
                             </div>
+                           
+                            
+                            
                             </div>
-                            <div class="pull-left search"><input class="form-control" placeholder="Search" type="text">
-                            </div>
-                            </div>
+                           
+                           
                             <div class="fixed-table-container" style="padding-bottom: 0px;">
                             <div class="fixed-table-header" style="display: none;">
+                            
                             <table>
                             </table>
                             </div>
@@ -309,120 +323,126 @@
                                 </div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th class="text-center" style="" data-field="id">
-                                <div class="th-inner ">ID</div>
+                                <th class="text-center" style="" data-field="productID">
+                                <div class="th-inner ">productID</div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th style="" data-field="name">
-                                <div class="th-inner sortable both">Name</div>
+                                <th style="" data-field="productName">
+                                <div class="th-inner ">productName</div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th style="" data-field="salary">
-                                <div class="th-inner sortable both">Salary</div>
+                                <th style="" data-field="unitPrice">
+                                <div class="th-inner ">unitPrice</div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th style="" data-field="country">
-                                <div class="th-inner sortable both">Country</div>
+                                <th style="" data-field="supplierID">
+                                <div class="th-inner">supplierID</div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th style="" data-field="city">
-                                <div class="th-inner ">City</div>
-                                <div class="fht-cell"></div>
-                                </th><th class="td-actions text-right" style="" data-field="actions">
+                                <th style="" data-field="description">
+                                <div class="th-inner ">description</div>
+                                <div class="fht-cell">
+                                </div></th>
+                                <th style="" data-field="color">
+                                <div class="th-inner ">color</div>
+                                <div class="fht-cell">
+                                </div></th>
+                                <th style="" data-field="dimension">
+                                <div class="th-inner">dimension</div>
+                                <div class="fht-cell">
+                                </div></th>
+                                <th style="" data-field="manufacturer">
+                                <div class="th-inner">manufacturer</div>
+                                <div class="fht-cell">
+                                </div></th>
+                                <th style="" data-field="reorderLevel">
+                                <div class="th-inner ">reorderLevel</div>
+                                <div class="fht-cell">
+                                </div></th>
+                                <th style="" data-field="minOrderQty">
+                                <div class="th-inner ">color</div>
+                                <div class="fht-cell">
+                                </div></th>
+                                <th style="" data-field="shelfLocation">
+                                <div class="th-inner">shelfLocation</div>
+                                <div class="fht-cell">
+                                </div></th>
+                                 <th style="" data-field="qty">
+                                <div class="th-inner ">totalQty</div>
+                                <div class="fht-cell">
+                                </div></th>
+                                 <th style="" data-field="damageQty">
+                                <div class="th-inner ">damageQty</div>
+                                <div class="fht-cell">
+                                </div></th>
+                                
+                                
+                                <th class="td-actions text-right" style="" data-field="actions">
                                 <div class="th-inner ">Actions</div><div class="fht-cell">
                                 </div></th>
                                 </tr></thead>
                                 <tbody>
                                 
-                                <tr data-index="0">
-                                <td class="bs-checkbox"><input data-index="0" name="btSelectItem" type="checkbox"></td>
-                                <td class="text-center" style="">1</td>
-                                <td style="">Dakota Rice</td>
-                                <td style="">$36,738</td>                               
-                                <td style="">Niger</td>
-                                <td style="">Oud-Turnhout</td>
+                                <!-- ADD -->
+                                <form action="productAddServlet" metohd="post" >
+                                <tr >
+                                <td></td>
+                                <td class="text-center " style=""></td>
+                                
+                                <td style=""><input class="form-control" style="width:200px" type="text" name="productName" placeholder="productName" /></td>                               
+                                <td style=""><input class="form-control" style="width:200px" type="text" name="unitPrice"placeholder="unitPrice"/></td>
+                                <% Supplier supplier = new Supplier(); %>
+                                <td style=""><input  class="form-control" style="width:200px" type="text" name="description"placeholder="description"/></td>
+                                 <td style=""><input class="form-control" style="width:200px" type="text" name="color" placeholder="color" /></td>                               
+                                <td style=""><input class="form-control" style="width:200px" type="text" name="dimension"placeholder="dimension"/></td>
+                                <td style=""><input  class="form-control" style="width:200px" type="text" name="manufacturer"placeholder="manufacturer"/></td>
+                                 <td style=""><input class="form-control" style="width:200px" type="text" name="reorderLevel" placeholder="reorderLevel" /></td>                               
+                                <td style=""><input class="form-control" style="width:200px" type="text" name="minOrderQty"placeholder="minOrderQty"/></td>
+                                 <td style=""><input  class="form-control" style="width:200px" type="text" name="shelfLocation"placeholder="shelfLocation"/></td>
+                                 <td style=""><input class="form-control" style="width:200px" type="text" name="qty" placeholder="totalQty" /></td>                               
+                                <td style=""><input class="form-control" style="width:200px" type="text" name="damageQty"placeholder="damageQty"/></td>
+                                <td class="td-actions text-right" style="">
+                                
+                                <button class="btn btn-default" type="submit" name="add" title="Add">
+                             ADD</button>
+                              
+                               
+                                </td></tr>
+                                </form>
+                                
+                                <!-- list detail & operation -->
+                                 <%for(int i = 0 ; i<list.size();i++) { 
+                                	 Products products = list.get(i);%>
+                                
+                                <tr data-index="<%=products.getProductID() %>">
+                                <td class="bs-checkbox"><input value="<%=products.getProductID()%>" data-index="<%=products.getProductID() %>" name="num" type="checkbox"></td>
+                                <td class="text-center" style=""><font color="black"><%=products.getProductID()%></font></td>
+                                <td style=""><a href="productViewServlet?userId=<%=products.getProductID()%>" ><font color="black"><%=products.getProductName()%></font></a></td>
+                                                              
+                                <td style=""><font color="black"><%=products.getUnitPrice() %></font></td>
+                                <td style=""><font color="black"><%=products.getSupplierID() %></font></td>
+                                <td style=""><font color="black"><%=products.getDescription() %></font></td>
+                                <td style=""><font color="black"><%=products.getColor() %></font></td>
+                                 <td style=""><font color="black"><%=products.getDimension() %></font></td>
+                                <td style=""><font color="black"><%=products.getManufacturer() %></font></td>
+                                <td style=""><font color="black"><%=products.getReorderLevel() %></font></td>
+                                <td style=""><font color="black"><%=products.getMinOrderQty()%></font></td>
+                                 <td style=""><font color="black"><%=products.getShelfLocation() %></font></td>
+                                <td style=""><font color="black"><%=products.getQty()%></font></td>
+                                <td style=""><font color="black"><%=products.getDamageQty()%></font></td>
                                 
                                 <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image">
-                                </i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
+                              
+                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="productUpdateServlet?userId=<%=products.getProductID() %>" data-original-title="Edit">
                                 <i class="fa fa-edit">
-                                </i></a><a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
+                                </i></a><a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="productDeleteOneServlet?userId=<%=products.getProductID()%>" data-original-title="Remove">
                                 <i class="fa fa-remove">
                                 </i></a>
                                 </td></tr>
-                                
-                                <tr data-index="1">
-                                <td class="bs-checkbox">
-                                <input data-index="1" name="btSelectItem" type="checkbox">
-                                </td>
-                                <td class="text-center" style="">2</td>
-                                <td style="">Minerva Hooper</td>
-                                <td style="">$23,789</td>
-                                <td style="">Curaçao</td>
-                                <td style="">Sinaai-Waas</td>
-                                <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
-                                <i class="fa fa-edit"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove"></i></a>
-                                </td></tr>
-                                
-                                <tr data-index="2">
-                                <td class="bs-checkbox">
-                                <input data-index="2" name="btSelectItem" type="checkbox">
-                                </td>
-                                <td class="text-center" style="">3</td>
-                                <td style="">Sage Rodriguez</td>
-                                <td style="">$56,142</td>
-                                <td style="">Netherlands</td>
-                                <td style="">Baileux</td>
-                                <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
-                                <i class="fa fa-edit"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove"></i></a>
-                                </td></tr>
-                                
-                                <tr data-index="3">
-                                <td class="bs-checkbox">
-                                <input data-index="3" name="btSelectItem" type="checkbox">
-                                </td>
-                                <td class="text-center" style="">4</td>
-                                <td style="">Philip Chaney</td>
-                                <td style="">$38,735</td>
-                                <td style="">Korea, South</td>
-                                <td style="">Overland Park</td>
-                                <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
-                                <i class="fa fa-edit"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove"></i></a>
-                                </td></tr>
-                                
-                                <tr data-index="4">
-                                <td class="bs-checkbox">
-                                <input data-index="4" name="btSelectItem" type="checkbox"></td>
-                                <td class="text-center" style="">5</td>
-                                <td style="">Doris Greene</td>
-                                <td style="">$63,542</td>
-                                <td style="">Malawi</td>
-                                <td style="">Feldkirchen in Kärnten</td>
-                                <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
-                                <i class="fa fa-edit"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove"></i></a>
-                                </td></tr>
+                                 <% 
+                                 }
+                                 %>
+                                                              
                                 
                             <table>
                             <tbody>

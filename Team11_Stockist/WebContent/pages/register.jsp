@@ -166,6 +166,10 @@
                                         <input type="text" name="address"placeholder="Address" class="form-control">
                                     </div>
                                     <div class="form-group">
+                                        <input type="text" name="description"placeholder="Description" class="form-control">
+                                    </div>
+                                    
+                                    <div class="form-group">                                    
                                         <input type="password" name="password"placeholder="Password" class="form-control">
                                     </div>
                                       <div class="form-group">

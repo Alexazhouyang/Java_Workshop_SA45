@@ -1,7 +1,7 @@
 package dao;
 
 import java.sql.Connection;
-
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -36,8 +36,92 @@ public class UserDAO {
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
-	
-	
 	}
+	
+	public String  judgeUserPassword(String username) {
+		DBHelper dbHelper = new DBHelper();
+		String sql = "";
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet rs = null;
+		String password = "";
+		
+		
+		try {
+			connection = dbHelper.initDB();
+			statement =connection.createStatement();
+			sql="SELECT * FROM user WHERE userName = '"
+					+ username + "'";
+					rs = statement.executeQuery(sql);
+					while (rs.next()) {
+						
+						password = rs.getString("password");	
+						
+					
+					}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return password;
+	}
+	
+public int FindID(String userName) {
+		
+		DBHelper dbHelper = new DBHelper();
+		String sql = "";
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet rs = null;
+		int userid = 0;
+
+		try {
+			
+			connection = dbHelper.initDB();
+			statement =connection.createStatement();
+			sql="SELECT * FROM user WHERE userName = '"
+			+ userName + "'";
+			rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				
+				userid = rs.getInt("userID");			
+			}
+		}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
+		return userid;
+	}
+
+public String FindRole(int userid) {
+	
+	DBHelper dbHelper = new DBHelper();
+	String sql = "";
+	Connection connection = null;
+	Statement statement = null;
+	ResultSet rs = null;
+	String role = "";
+	
+
+	try {
+		
+		connection = dbHelper.initDB();
+		statement =connection.createStatement();
+		sql="SELECT * FROM user WHERE userID = '"
+		+ userid + "'";
+		rs = statement.executeQuery(sql);
+		while (rs.next()) {
+			
+			role = rs.getString("role");			
+		}
+	}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
+	return role;
+}
+
 
 }
