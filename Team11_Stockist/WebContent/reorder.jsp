@@ -1,6 +1,9 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@page import="entity.Supplier"%>
+<%@page import="entity.Products"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%ArrayList<Products> list =(ArrayList<Products>) (request.getAttribute("list")); %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -96,7 +99,7 @@
                 </div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                        <%=request.getParameter("username") %>
+                        <%=request.getSession().getAttribute("username") %>
                         <b class="caret"></b>
                     </a>
                     <div class="collapse" id="collapseExample">
@@ -247,7 +250,7 @@
         
         <!-- Main Content in put here -->
         <!-- Main Content in put here -->
-        <div class="content">
+       <div class="content">
             <div class="container-fluid">
 
                 <div class="row">
@@ -255,46 +258,35 @@
                         <div class="card">
 
                            <div class="fixed-table-toolbar"><div class="bars pull-left"><div class="toolbar">
-                                <!--        Here you can write extra buttons/actions for the toolbar              -->
-                            </div></div><div class="columns columns-right pull-right">
-                            <button class="btn btn-default" type="button" name="refresh" title="Refresh">
-                            <i class="glyphicon fa fa-refresh"></i>
+                                <!--        Here you can write extra buttons/actions for the toolbar   
+                                           -->                          
+                            
+                            </div></div>
+                            <form action="reorderSearchServlet" method="post" > 
+                            
+                             <div class=" pull-left" style="width:50%">
+                            <div class="search" ><input class="form-control" style="width:100% ; margin:10px 10px 0 0" placeholder="Search" type="text" name ="productName">                                                       
+                            </div>
+                            </div>
+                            <div class=" columns columns-right pull-right" style="margin:10px">
+                             <button class="btn btn-default" style="margin:0 10px 0 0" type="submit" name="SEARCH" value="Search"> SEARCH                           
+                            </button>   
+                           </form>
+                            <button class=" btn btn-default" type="button" name="refresh" title="Refresh" >
+                            <a href="reorderViewServlet"><font color="gray">REFRESH</font></a>
                             </button>
-                            <button class="btn btn-default" type="button" name="toggle" title="Toggle">
-                            <i class="glyphicon fa fa-th-list"></i>
-                            </button>
-                            <div class="keep-open btn-group" title="Columns">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <i class="glyphicon fa fa-columns"></i>
-                            <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                            <li>
-                            <label><input data-field="id" value="1" checked="checked" type="checkbox"> ID</label>
-                            </li>
-                            <li>
-                            <label><input data-field="name" value="2" checked="checked" type="checkbox"> Name</label>
-                            </li>
-                            <li>
-                            <label><input data-field="salary" value="3" checked="checked" type="checkbox"> Salary</label>
-                            </li>
-                            <li>
-                            <label><input data-field="country" value="4" checked="checked" type="checkbox"> Country</label>
-                            </li>
-                            <li>
-                            <label><input data-field="city" value="5" checked="checked" type="checkbox"> City</label>
-                            </li>
-                            <li>
-                            <label><input data-field="actions" value="6" checked="checked" type="checkbox"> Actions</label>
-                            </li>
-                            </ul>
+                            
+                           
                             </div>
+                           
+                            
+                            
                             </div>
-                            <div class="pull-left search"><input class="form-control" placeholder="Search" type="text">
-                            </div>
-                            </div>
+                           
+                           
                             <div class="fixed-table-container" style="padding-bottom: 0px;">
                             <div class="fixed-table-header" style="display: none;">
+                            
                             <table>
                             </table>
                             </div>
@@ -309,120 +301,58 @@
                                 </div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th class="text-center" style="" data-field="id">
-                                <div class="th-inner ">ID</div>
+                                <th class="text-center" style="" data-field="productID">
+                                <div class="th-inner ">productID</div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th style="" data-field="name">
-                                <div class="th-inner sortable both">Name</div>
+                                 <th style="" data-field="partNO">
+                                <div class="th-inner ">partNO</div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th style="" data-field="salary">
-                                <div class="th-inner sortable both">Salary</div>
+                                <th style="" data-field="productName">
+                                <div class="th-inner ">productName</div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th style="" data-field="country">
-                                <div class="th-inner sortable both">Country</div>
+                                <th style="" data-field="unitPrice">
+                                <div class="th-inner ">unitPrice</div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th style="" data-field="city">
-                                <div class="th-inner ">City</div>
-                                <div class="fht-cell"></div>
-                                </th><th class="td-actions text-right" style="" data-field="actions">
-                                <div class="th-inner ">Actions</div><div class="fht-cell">
+                                <th style="" data-field="supplierID">
+                                <div class="th-inner ">supplierID</div>
+                                <div class="fht-cell">
+                                </div></th>
+
+                                <th class="td-actions text-right" style="" data-field="actions">
+                                <div class="th-inner ">Reorder</div><div class="fht-cell">
                                 </div></th>
                                 </tr></thead>
                                 <tbody>
                                 
-                                <tr data-index="0">
-                                <td class="bs-checkbox"><input data-index="0" name="btSelectItem" type="checkbox"></td>
-                                <td class="text-center" style="">1</td>
-                                <td style="">Dakota Rice</td>
-                                <td style="">$36,738</td>                               
-                                <td style="">Niger</td>
-                                <td style="">Oud-Turnhout</td>
+                               
                                 
+                                <!-- list detail & operation -->
+                                 <%for(int i = 0 ; i<list.size();i++) { 
+                                	 Products products = list.get(i);%>                                
+                                <tr data-index="<%=products.getProductID() %>">
+                                <td class="bs-checkbox"><input value="<%=products.getProductID()%>" data-index="<%=products.getProductID() %>" name="num" type="checkbox"></td>
+                                <td class="text-center" ><font color="black"><%=products.getProductID()%></font></td>
+                                <td class="text-center"><font color="black"><%=products.getPartNO()%></font></td>
+                                <td class="text-center"><font color="black"><%=products.getProductName()%></font></td>                              
+                                <td class="text-center"><font color="black"><%=products.getUnitPrice() %></font></td>
+                                <td class="text-center"><font color="black"><%=products.getSupplierID() %></font></td>
+                                <!-- <td class="text-center"><input type ="text" placeholder="Reorder Qty"></td>
+                                -->
                                 <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image">
-                                </i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
+                                
+                                
+                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="reorderIssueServlet?userId=<%=products.getProductID() %>" data-original-title="Edit">
                                 <i class="fa fa-edit">
-                                </i></a><a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove">
                                 </i></a>
                                 </td></tr>
-                                
-                                <tr data-index="1">
-                                <td class="bs-checkbox">
-                                <input data-index="1" name="btSelectItem" type="checkbox">
-                                </td>
-                                <td class="text-center" style="">2</td>
-                                <td style="">Minerva Hooper</td>
-                                <td style="">$23,789</td>
-                                <td style="">Curaçao</td>
-                                <td style="">Sinaai-Waas</td>
-                                <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
-                                <i class="fa fa-edit"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove"></i></a>
-                                </td></tr>
-                                
-                                <tr data-index="2">
-                                <td class="bs-checkbox">
-                                <input data-index="2" name="btSelectItem" type="checkbox">
-                                </td>
-                                <td class="text-center" style="">3</td>
-                                <td style="">Sage Rodriguez</td>
-                                <td style="">$56,142</td>
-                                <td style="">Netherlands</td>
-                                <td style="">Baileux</td>
-                                <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
-                                <i class="fa fa-edit"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove"></i></a>
-                                </td></tr>
-                                
-                                <tr data-index="3">
-                                <td class="bs-checkbox">
-                                <input data-index="3" name="btSelectItem" type="checkbox">
-                                </td>
-                                <td class="text-center" style="">4</td>
-                                <td style="">Philip Chaney</td>
-                                <td style="">$38,735</td>
-                                <td style="">Korea, South</td>
-                                <td style="">Overland Park</td>
-                                <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
-                                <i class="fa fa-edit"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove"></i></a>
-                                </td></tr>
-                                
-                                <tr data-index="4">
-                                <td class="bs-checkbox">
-                                <input data-index="4" name="btSelectItem" type="checkbox"></td>
-                                <td class="text-center" style="">5</td>
-                                <td style="">Doris Greene</td>
-                                <td style="">$63,542</td>
-                                <td style="">Malawi</td>
-                                <td style="">Feldkirchen in Kärnten</td>
-                                <td class="td-actions text-right" style="">
-                                <a rel="tooltip" title="" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)" data-original-title="View">
-                                <i class="fa fa-image"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)" data-original-title="Edit">
-                                <i class="fa fa-edit"></i></a>
-                                <a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)" data-original-title="Remove">
-                                <i class="fa fa-remove"></i></a>
-                                </td></tr>
+                                 <% 
+                                 }
+                                 %>
+                                                              
                                 
                             <table>
                             <tbody>

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.supplierDAO;
-import entity.Supplier;
+import model.Supplier;
 
 /**
  * Servlet implementation class supplierAddServlet
@@ -54,7 +54,8 @@ public class supplierAddServlet extends HttpServlet {
 			{
 			supplier.setSupplierName(supplierName);
 			supplier.setContactNumber(contactNumber);
-			supplier.setEmail(email);			
+			supplier.setEmail(email);
+			
 			supplierDAO.insertSupplier(supplier);
 			}
 			else {

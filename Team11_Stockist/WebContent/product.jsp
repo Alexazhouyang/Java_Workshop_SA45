@@ -360,7 +360,7 @@
                                 <div class="fht-cell">
                                 </div></th>
                                 <th style="" data-field="minOrderQty">
-                                <div class="th-inner ">color</div>
+                                <div class="th-inner ">minOrderQty</div>
                                 <div class="fht-cell">
                                 </div></th>
                                 <th style="" data-field="shelfLocation">

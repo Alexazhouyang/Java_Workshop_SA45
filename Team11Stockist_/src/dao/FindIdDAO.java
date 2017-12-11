@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import entity.Users;
+import model.Users;
 import util.DBHelper;
 
 public class FindIdDAO {

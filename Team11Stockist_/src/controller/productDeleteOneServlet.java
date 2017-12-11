@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.productDAO;
 import dao.supplierDAO;
-import entity.Products;
-import entity.Supplier;
+import model.Products;
+import model.Supplier;
 
 /**
  * Servlet implementation class supplierDeleteServlet

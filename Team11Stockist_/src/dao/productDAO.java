@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import entity.Products;
-import entity.Supplier;
+import model.Products;
+import model.Supplier;
 import util.DBHelper;
 
 public class productDAO {
@@ -109,6 +109,11 @@ public class productDAO {
 			e.printStackTrace();
 			}	
 		}
+	/**
+	 * insert product information
+	 */
+	
+	
 	
 	
 	/**
@@ -191,6 +196,70 @@ public class productDAO {
 			}
 			return list;
 		}
+		/**
+		 * select by ID
+		 * @param productName
+		 * @return
+		 */
+		public Products selectProductsByID(int productID) {
+			DBHelper dbHelper = new DBHelper();
+			String sql = "";
+			Connection connection = null;
+			Statement statement = null;
+			ResultSet rs = null;	
+			Products products =new Products();
+			
+			try {
+				connection = dbHelper.initDB();
+				statement =connection.createStatement();
+				sql="SELECT * FROM product WHERE productID ="+ productID ;
+						rs = statement.executeQuery(sql);
+						while (rs.next()) {	
+							products = new Products();
+							products.setPartNO(rs.getString("partNO"));
+							products.setProductID(productID);
+							products.setProductName(rs.getString("productName"));
+							products.setUnitPrice(rs.getFloat("unitPrice"));
+							products.setSupplierID(rs.getInt("supplierID"));
+							products.setDescription(rs.getString("description"));
+							products.setColor(rs.getString("color"));
+							products.setDimension(rs.getString("dimension"));
+							products.setManufacturer(rs.getString("manufacturer"));
+							products.setReorderLevel(rs.getString("reorderLevel"));
+							products.setMinOrderQty(rs.getInt("minOrderQty"));
+							products.setShelfLocation(rs.getString("shelfLocation"));
+							products.setQty(rs.getInt("qty"));
+							products.setDamageQty(rs.getInt("damageQty"));
+											
+						}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return products;
+		}
+		
+		
+		public void updateQty(int productID,int qty) {
+			DBHelper dbHelper = new DBHelper();
+			String sql = "";
+			Connection connection = null;
+			Statement statement = null;
+			try {
+				connection = dbHelper.initDB();
+				statement =connection.createStatement();
+				sql="UPDATE product SET `qty`='"
+						+ qty +
+						"' WHERE `productID`='"+ productID +"'";
+				statement.executeUpdate(sql);
+			}catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+		}
+			
+		
+		
 		
 		public void deleteoneProducts(int productID) {
 			DBHelper dbHelper = new DBHelper();

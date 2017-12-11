@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.productDAO;
 import dao.supplierDAO;
-import entity.Products;
-import entity.Supplier;
+import model.Products;
+import model.Supplier;
 
 /**
  * Servlet implementation class supplierServlet
@@ -44,11 +44,11 @@ public class productViewServlet extends HttpServlet {
 		doProcess(request, response);
 	}
 
-	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		productDAO productDAO = new productDAO() ;
 		ArrayList<Products> list = productDAO.selectProduct();
         request.setAttribute("list", list);
+        
         request.getRequestDispatcher("product.jsp").forward(request,
                 response);
 		

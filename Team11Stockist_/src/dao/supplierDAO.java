@@ -6,8 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
-import entity.Supplier;
+import model.Supplier;
 import util.DBHelper;
 
 public class supplierDAO {

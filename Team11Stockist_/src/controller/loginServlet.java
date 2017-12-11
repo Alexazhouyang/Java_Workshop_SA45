@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.AdminDAO;
 import dao.MechDAO;
 import dao.UserDAO;
-import entity.Users;
+import model.Users;
 
 /**
  * Servlet implementation class loginServlet
@@ -57,45 +57,33 @@ public class loginServlet extends HttpServlet {
 		String message = "username or password error!"+userName+password;
 		if(check.equals(password))
 		{
-			request.setAttribute("message", message);
-			request.getRequestDispatcher("pages/login.jsp").forward(request,response);
-		}else {
-			
-			
 			int userid = userDAO.FindID(userName);			
 			String role = userDAO.FindRole(userid);
-//			users.setUsername(userName);
-//			users.setUserID(userid);
-//			users.setRole(role);
+			
+			
 			if(role.equals("admin"))
 			{				
 				users = adminDAO.selectAdmin(users,userid);
-				request.getSession().setAttribute("username", userName);
-				request.setAttribute("firstname", users.getFirstname());
-				request.setAttribute("lastname", users.getLastname());
-				request.setAttribute("email", users.getEmail());
-				request.setAttribute("phonenumber", users.getPhonenumber());
-				//request.setAttribute("password", password);
-				request.setAttribute("address", users.getAddress());
-				request.setAttribute("description", users.getDescription());
-				//request.getSession().setAttribute("regUser", users);
+				users = userDAO.FindLog(users, userid);
+				request.getSession().setAttribute("users", users);
 			request.getRequestDispatcher("admin.jsp").forward(request,response);
 			}
-			else {
+			else if(role.equals("mechanic")){
 				users = mechDAO.selectMech(users,userid);
-				
-				request.getSession().setAttribute("username", userName);
-				request.setAttribute("firstname", users.getFirstname());
-				request.setAttribute("lastname", users.getLastname());
-				request.setAttribute("email", users.getEmail());
-				request.setAttribute("phonenumber", users.getPhonenumber());
-				//request.setAttribute("password", password);
-				request.setAttribute("address", users.getAddress());
-				request.setAttribute("description", users.getDescription());
-				
-				//request.getSession().setAttribute("regUser", users);
+				users = userDAO.FindLog(users, userid);
+				request.getSession().setAttribute("users", users);
 			request.getRequestDispatcher("mechanic.jsp").forward(request,response);
+			}else {
+				request.getSession().setAttribute("message", message);
+				response.sendRedirect("pages/login.jsp");
 			}
+			
+		}else {
+			
+			request.getSession().setAttribute("message", message);
+			response.sendRedirect("pages/login.jsp");
+//			request.getRequestDispatcher("pages/login.jsp").forward(request,response);
+			
 		}
 		
 	}

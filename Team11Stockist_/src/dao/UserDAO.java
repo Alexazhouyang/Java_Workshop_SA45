@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import entity.Users;
+import model.Users;
 import util.DBHelper;
 
 public class UserDAO {
@@ -112,7 +112,6 @@ public String FindRole(int userid) {
 		+ userid + "'";
 		rs = statement.executeQuery(sql);
 		while (rs.next()) {
-			
 			role = rs.getString("role");			
 		}
 	}
@@ -121,6 +120,34 @@ public String FindRole(int userid) {
 		}
 	
 	return role;
+}
+public Users FindLog(Users users ,int userid) {
+	
+	DBHelper dbHelper = new DBHelper();
+	String sql = "";
+	Connection connection = null;
+	Statement statement = null;
+	ResultSet rs = null;
+	
+
+	try {
+		
+		connection = dbHelper.initDB();
+		statement =connection.createStatement();
+		sql="SELECT * FROM user WHERE userID = "
+		+ userid ;
+		rs = statement.executeQuery(sql);
+		while (rs.next()) {
+			users.setUsername(rs.getString("userName"));
+			users.setPassword(rs.getString("password"));
+			users.setRole(rs.getString("role"));
+		}
+	}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
+	return users;
 }
 
 

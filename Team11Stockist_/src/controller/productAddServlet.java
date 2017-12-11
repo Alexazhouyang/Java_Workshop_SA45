@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.productDAO;
-import entity.Products;
+import model.Products;
 
 /**
  * Servlet implementation class productAddServlet

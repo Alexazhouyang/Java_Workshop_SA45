@@ -9,13 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.productDAO;
 import dao.supplierDAO;
+import entity.Products;
 import entity.Supplier;
 
 /**
  * Servlet implementation class supplierDeleteServlet
  */
-@WebServlet("/supplierDeleteOneServlet")
+@WebServlet("/productDeleteOneServlet")
 public class productDeleteOneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -44,12 +46,12 @@ public class productDeleteOneServlet extends HttpServlet {
 
 	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int userId = Integer.parseInt(request.getParameter("userId"));
-        supplierDAO supplierDAO = new supplierDAO();
-        supplierDAO.deleteoneSupplier(userId);
+		productDAO productDAO = new productDAO();
+		productDAO.deleteoneProducts(userId);
         
-        ArrayList<Supplier> list=supplierDAO.selectSupplier();
+        ArrayList<Products> list= productDAO.selectProduct();
         request.setAttribute("list", list);
-        request.getRequestDispatcher("supplier.jsp").forward(request, response);
+        request.getRequestDispatcher("product.jsp").forward(request, response);
 		
 	}
 

@@ -2,6 +2,7 @@ package entity;
 
 public class Products {
 	private int productID;
+	private String partNO;
 	private String productName ;
 	private float unitPrice;
 	private int supplierID;
@@ -14,11 +15,12 @@ public class Products {
 	private int minOrderQty;
 	private int qty;
 	private int damageQty;
-	public Products(int productID,String productName, float unitPrice, int supplierID, String description, String color,
+	public Products(int productID,String productName, String partNO,float unitPrice, int supplierID, String description, String color,
 			String dimension, String manufacturer, String reorderLevel, String shelfLocation, int minOrderQty, int qty,
 			int damageQty) {
 		super();
 		this.productID=productID;
+		this.partNO=partNO;
 		this.productName = productName;
 		this.unitPrice = unitPrice;
 		this.supplierID = supplierID;
@@ -38,6 +40,12 @@ public class Products {
 	}
 	
 	
+	public String getPartNO() {
+		return partNO;
+	}
+	public void setPartNO(String partNO) {
+		this.partNO = partNO;
+	}
 	public int getProductID() {
 		return productID;
 	}

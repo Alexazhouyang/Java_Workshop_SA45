@@ -13,7 +13,7 @@ import util.DBHelper;
 public class productDAO {
 	
 	/**
-	 * update supplier information
+	 * update supplier information(not update)
 	 */
 	
 	public void updateProduct(Products user) {
@@ -29,11 +29,11 @@ public class productDAO {
 			statement =connection.createStatement();
 			sql = "UPDATE product SET productName= '"
 			+ user.getProductName()
-			+"',unitPrice='"
+			+"',unitPrice="
 			+ user.getUnitPrice()
-			+"',supplierID='"
+			+",supplierID="
 			+ user.getSupplierID()
-			+"',description='"
+			+",description='"
 			+ user.getDescription()
 			+"',color='"
 			+ user.getColor()
@@ -43,16 +43,16 @@ public class productDAO {
 			+ user.getManufacturer()
 			+"',reorderLevel='"
 			+ user.getReorderLevel()
-			+"',minOrderQty='"
+			+"',minOrderQty="
 			+ user.getMinOrderQty()
-			+"',shelfLocation='"
+			+",shelfLocation='"
 			+ user.getShelfLocation()
-			+"',qty='"
+			+"',qty="
 			+ user.getQty()
-			+"',damageQty='"
+			+",damageQty="
 			+ user.getDamageQty()
 			
-			+"' WHERE productID="+ user.getProductID();
+			+" WHERE productID="+ user.getProductID();
 			
 			statement.executeUpdate(sql);				
 			} catch (SQLException e) {
@@ -75,14 +75,16 @@ public class productDAO {
 			
 			connection = dbHelper.initDB();
 			statement =connection.createStatement();
-			sql = "INSERT INTO product ( productName, unitPrice,supplierID, description,"
-					+ "color,dimension,manufacturer,reorderLevel,,minOrderQty,shelfLocation,qty,damageQty) VALUES ('"
+			sql = "INSERT INTO product (partNO, productName,unitPrice,supplierID, description,"
+					+ "color,dimension,manufacturer,reorderLevel,minOrderQty,shelfLocation,qty,damageQty) VALUES ('"
+					+ user.getPartNO()
+					+"','"
 					+ user.getProductName()
-					+"','"
+					+"',"
 					+ user.getUnitPrice()
-					+"','"
+					+","
 					+ user.getSupplierID()
-					+"','"
+					+",'"
 					+ user.getDescription()
 					+"','"
 					+ user.getColor()
@@ -92,15 +94,15 @@ public class productDAO {
 					+ user.getManufacturer()
 					+"','"
 					+ user.getReorderLevel()
-					+"','"
+					+"',"
 					+ user.getMinOrderQty()
-					+"','"
+					+",'"
 					+ user.getShelfLocation()
-					+"','"
+					+"',"
 					+ user.getQty()
-					+"','"
+					+","
 					+ user.getDamageQty()
-					+ "')";
+					+ ")";
 			
 			statement.executeUpdate(sql);				
 			} catch (SQLException e) {
@@ -130,6 +132,7 @@ public class productDAO {
 						rs = statement.executeQuery(sql);
 						while (rs.next()) {	
 							products = new Products();
+							products.setPartNO(rs.getString("partNO"));
 							products.setProductID(rs.getInt("productID"));
 							products.setProductName(rs.getString("productName"));
 							products.setUnitPrice(rs.getFloat("unitPrice"));
@@ -166,6 +169,7 @@ public class productDAO {
 						rs = statement.executeQuery(sql);
 						while (rs.next()) {	
 							products = new Products();
+							products.setPartNO(rs.getString("partNO"));
 							products.setProductID(rs.getInt("productID"));
 							products.setProductName(rs.getString("productName"));
 							products.setUnitPrice(rs.getFloat("unitPrice"));

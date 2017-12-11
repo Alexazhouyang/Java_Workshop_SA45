@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@page import="model.Users"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <!doctype html>
@@ -67,7 +68,7 @@
 
 </head>
 <body>
-
+<jsp:useBean id="users" class="model.Users" scope="session" />
 <div class="wrapper">
     <div class="sidebar" data-color="orange" data-image="../assets/img/full-screen-image-3.jpg">
         <!--
@@ -96,7 +97,7 @@
                 </div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                        <%=request.getParameter("username") %>
+                         <%=users.getUsername() %>
                         <b class="caret"></b>
                     </a>
                     <div class="collapse" id="collapseExample">
@@ -110,30 +111,20 @@
             </div>
 
             <ul class="nav">
+                
                 <li>
-                    <a href="catalog.jsp">
-                        <i class="pe-7s-graph"></i>
-                        <p>Browse Catalog</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="view_product.jsp">
+                    <a href="viewProductServlet">
                         <i class="pe-7s-plugin"></i>
                         <p>View Products</p>
                     </a>
                    
                 </li>
 
-                <li>
-                    <a href="usage.jsp">
-                        <i class="pe-7s-note2"></i>
-                        <p>Record Usage</p>
-                    </a>                   
-                </li>
+               
                
 
                 <li>
-                    <a href="usage_report.jsp">
+                    <a href="usageViewServlet">
                          <i class="pe-7s-news-paper"></i>
                         <p>Print Report</p>
                     </a>
@@ -182,24 +173,15 @@
     							</p>
                             </a>
                             <ul class="dropdown-menu dropdown-with-icons">
-                                <li>
-                                    <a href="catalog.jsp">
-                                        <i class="pe-7s-graph"></i> Browse Catalog
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="view_product.jsp">
+                            
+                                    <a href="viewProductServlet">
                                         <i class="pe-7s-plugin"></i> View Products
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="usage.jsp">
-                                        <i class="pe-7s-note2"></i> Record Usage
-                                    </a>
-                                </li>
+                               
                                 
                                 <li>
-                                    <a href="usage_report.jsp">
+                                    <a href="usageViewServlet">
                                         <i class="pe-7s-news-paper"></i> Print Report
                                     </a>
                                 </li>
@@ -240,26 +222,28 @@
                             </div>
                             <div class="content">
                             
-                                <form>
+                                <form action="userUpdateServlet" method="post" name="userForm">
+                                <input type="hidden" name="role" class="form-control" placeholder="Role" value="<%=users.getRole()%>">
                                     <div class="row">
-                                        <div class="col-md-5">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Role</label>
-                                                <input type="text" class="form-control" disabled placeholder="Role" value="Administrater">
+                                                <input type="text" name="role" class="form-control" disabled placeholder="Role" value="<%=users.getRole()%>">
+                                                
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Username</label>
                                                 
-                                                <input type="text" class="form-control" placeholder="UserName" value="${username}">
+                                                <input type="text" name="userName" class="form-control" placeholder="UserName" value=" <%=users.getUsername() %>">
                                         
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" class="form-control" placeholder="Email" value = "${email}">
+                                                <input type="text" name="email" class="form-control" placeholder="Email" value = " <%=users.getEmail() %>">
                                             </div>
                                         </div>
                                     </div>
@@ -268,14 +252,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>First Name</label>
-                                                <input type="text" class="form-control" placeholder="First Name" value="${firstname}">
+                                                <input type="text" name="firstName" class="form-control" placeholder="First Name" value=" <%=users.getFirstname() %>">
                                                 
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Last Name</label>
-                                                <input type="text" class="form-control" placeholder="Last Name" value="${lastname}">
+                                                <input type="text" name="lastName" class="form-control" placeholder="Last Name" value=" <%=users.getLastname() %>">
                                             </div>
                                         </div>
                                     </div>
@@ -284,7 +268,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Address</label>
-                                                <input type="text" class="form-control" placeholder="Home Address" value="${address}">
+                                                <input type="text" name="address" class="form-control" placeholder="Home Address" value=" <%=users.getAddress() %>">
                                             </div>
                                         </div>
                                     </div>
@@ -293,20 +277,20 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input type="text" class="form-control" placeholder="Password" value="${password}">
+                                                <input type="text" name="password" class="form-control" placeholder="Password" value=" <%=users.getPassword() %>">
                                             </div>
                                         </div>
                                         
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>PhoneNumber</label>
-                                                <input type="text" class="form-control" placeholder="PhoneNumber" value="${phonenumber}">
+                                                <input type="text" name="phoneNumber" class="form-control" placeholder="PhoneNumber" value=" <%=users.getPhonenumber()%>">
                                             </div>
                                         </div>
-                                       <div class="col-md-4">
+                                        <div class="col-md-4">
                                             <div class="form-group">
-                                                
-                                                
+                                                <%-- <input type="hidden" name="role" class="form-control" value="<%=users.getRole()%>"/>  --%>
+                                               <input type="hidden" name="userID" class="form-control"  value="<%=users.getUserID() %>"/>  
                                             </div>
                                         </div>
                                     </div>
@@ -317,7 +301,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>About Me</label>
-                                                <textarea rows="5" class="form-control" placeholder="Here can be your description" value="Here can be your description"><%=request.getParameter("description") %></textarea>
+                                                <textarea rows="5" name="description" class="form-control" placeholder="Here can be your description" value="Here can be your description"> <%=users.getDescription()%></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -339,12 +323,12 @@
                                      <a href="#">
                                     <img class="avatar border-gray" src="picture/default-avatar.png" alt="..."/>
 
-                                      <h4 class="title"><%=request.getParameter("username") %><br />
-                                         <small><%=request.getParameter("firstname") %> <%=request.getParameter("lastname") %></small>
+                                      <h4 class="title"> <%=users.getUsername() %><br />
+                                         <small> <%=users.getLastname()%>  <%=users.getFirstname()%></small>
                                       </h4>
                                     </a>
                                 </div>
-                                <p class="description text-center"> "<%=request.getParameter("description") %>"
+                                <p class="description text-center"> " <%=users.getDescription()%>"
                                 </p>
                             </div>
                             <hr>

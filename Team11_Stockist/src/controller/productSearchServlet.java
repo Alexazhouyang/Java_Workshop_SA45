@@ -9,13 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.productDAO;
 import dao.supplierDAO;
+import entity.Products;
 import entity.Supplier;
 
 /**
  * Servlet implementation class supplierSearchServlet
  */
-@WebServlet("/supplierSearchServlet")
+@WebServlet("/productSearchServlet")
 public class productSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,25 +45,26 @@ public class productSearchServlet extends HttpServlet {
 	}
 
 	private void doProcess(HttpServletRequest request, HttpServletResponse response) {
-		Supplier supplier = new Supplier();
-		String supplierName = null;
-		supplierDAO supplierDAO = new supplierDAO();
+		Products products =new Products();
+		String productName = null;
+		productDAO productDAO = new productDAO();
 		
 		
 		try {
 			
-			supplierName = request.getParameter("supplierName");
+			productName = request.getParameter("productName");
 			
-			if(request.getParameter("supplierName") != null)
+			if(request.getParameter("productName") != null)
 			{
-			ArrayList<Supplier> list = supplierDAO.selectSupplierByName(supplierName);		
+			ArrayList<Products> list = productDAO.selectProductsByName(productName);		
 			request.setAttribute("list", list);
-	        request.getRequestDispatcher("supplier.jsp").forward(request,
+	        request.getRequestDispatcher("product.jsp").forward(request,
 	                response);
 			}
 			else {
-				
-		        request.getRequestDispatcher("supplier.jsp").forward(request,
+				ArrayList<Products> list = productDAO.selectProduct();		
+				request.setAttribute("list", list);
+		        request.getRequestDispatcher("product.jsp").forward(request,
 		                response);
 			}
 		} catch (Exception e) {

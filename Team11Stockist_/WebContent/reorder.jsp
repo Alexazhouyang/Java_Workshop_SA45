@@ -1,5 +1,5 @@
-﻿<%@page import="entity.Supplier"%>
-<%@page import="entity.Products"%>
+﻿<%@page import="model.Supplier"%>
+<%@page import="model.Products"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -70,7 +70,7 @@
 
 </head>
 <body>
-
+<jsp:useBean id="users" class="model.Users" scope="session" />
 <div class="wrapper">
     <div class="sidebar" data-color="orange" data-image="../assets/img/full-screen-image-3.jpg">
         <!--
@@ -114,13 +114,13 @@
 
             <ul class="nav">
                 <li>
-                    <a href="user.jsp">
+                    <a href="admin.jsp">
                         <i class="pe-7s-graph"></i>
                         <p>Manage User</p>
                     </a>
                 </li>
                 <li>
-                    <a href="product.jsp">
+                    <a href="productViewServlet">
                         <i class="pe-7s-plugin"></i>
                         <p>Manage Products</p>
                     </a>
@@ -133,15 +133,15 @@
                         <p>Manage Supplier</p>
                     </a>                   
                 </li>
-                 <li>
-                    <a href="reorder.jsp">
+                <li>
+                    <a href="reorderViewServlet">
                          <i class="pe-7s-graph1"></i>
                         <p>Reorder</p>
                     </a>
                 </li>
 
                 <li>
-                    <a href="report.jsp">
+                    <a href="reportViewServlet">
                          <i class="pe-7s-news-paper"></i>
                         <p>Print Report</p>
                     </a>
@@ -197,14 +197,14 @@
     								<b class="caret"></b>
     							</p>
                             </a>
-                            <ul class="dropdown-menu dropdown-with-icons">
+                                 <ul class="dropdown-menu dropdown-with-icons">
                                 <li>
-                                    <a href="user.jsp">
+                                    <a href="admin.jsp">
                                         <i class="pe-7s-graph"></i> Manage User
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="product.jsp">
+                                    <a href="productViewServlet">
                                         <i class="pe-7s-plugin"></i> Manage Products
                                     </a>
                                 </li>
@@ -214,24 +214,24 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="reorder.jsp">
+                                    <a href="reorderViewServlet">
                                         <i class="pe-7s-graph1"></i> Reorder
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="report.jsp">
+                                    <a href="reportViewServlet">
                                         <i class="pe-7s-news-paper"></i> Print Report
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="information.jsp">
+                                    <a href="admin.jsp">
                                         <i class="pe-7s-tools"></i> Settings
                                     </a>
                                 </li>
                                 <li class="divider"></li>
                               
                                 <li>
-                                    <a href="#" class="text-danger">
+                                    <a href="logoutServlet" class="text-danger">
                                         <i class="pe-7s-close-circle"></i>
                                         Log out
                                     </a>
@@ -305,24 +305,24 @@
                                 <div class="th-inner ">productID</div>
                                 <div class="fht-cell">
                                 </div></th>
-                                 <th style="" data-field="partNO">
+                                 <th class="text-center" style="" data-field="partNO">
                                 <div class="th-inner ">partNO</div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th style="" data-field="productName">
+                                <th class="text-center" style="" data-field="productName">
                                 <div class="th-inner ">productName</div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th style="" data-field="unitPrice">
+                                <th class="text-center" style="" data-field="unitPrice">
                                 <div class="th-inner ">unitPrice</div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th style="" data-field="supplierID">
+                                <th class="text-center" style="" data-field="supplierID">
                                 <div class="th-inner ">supplierID</div>
                                 <div class="fht-cell">
                                 </div></th>
 
-                                <th class="td-actions text-right" style="" data-field="actions">
+                                <th class="text-center" class="td-actions text-right" style="" data-field="actions">
                                 <div class="th-inner ">Reorder</div><div class="fht-cell">
                                 </div></th>
                                 </tr></thead>
@@ -342,10 +342,9 @@
                                 <td class="text-center"><font color="black"><%=products.getSupplierID() %></font></td>
                                 <!-- <td class="text-center"><input type ="text" placeholder="Reorder Qty"></td>
                                 -->
-                                <td class="td-actions text-right" style="">
-                                
-                                
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="reorderIssueServlet?userId=<%=products.getProductID() %>" data-original-title="Edit">
+                                <td class="td-actions text-center" style="">
+             
+                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="reorderIssueServlet?productID=<%=products.getProductID() %>" data-original-title="Input Reorder Qty">
                                 <i class="fa fa-edit">
                                 </i></a>
                                 </td></tr>

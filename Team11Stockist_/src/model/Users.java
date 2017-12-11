@@ -1,7 +1,7 @@
-package entity;
+package model;
 
 public class Users {
-	private int userID;
+	private int userID,mechID;
 	private String username;
 	private String firstname;
 	private String lastname;
@@ -11,9 +11,10 @@ public class Users {
 	private String description;
 	private String password;
 	private String role;
-	public Users(Integer userID,String username, String firstname, String lastname, String email, String phonenumber, String address,String description,
+	public Users(Integer userID,Integer mechID,String username, String firstname, String lastname, String email, String phonenumber, String address,String description,
 			String password, String role) {
 		super();
+		this.mechID = mechID;
 		this.userID = userID;
 		this.username = username;
 		this.firstname = firstname;
@@ -30,6 +31,12 @@ public class Users {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public int getMechID() {
+		return mechID;
+	}
+	public void setMechID(int mechID) {
+		this.mechID = mechID;
+	}
 	public String getDescription() {
 		return description;
 	}

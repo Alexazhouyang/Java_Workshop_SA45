@@ -11,7 +11,7 @@ import dao.AdminDAO;
 import dao.FindIdDAO;
 import dao.MechDAO;
 import dao.UserDAO;
-import entity.Users;
+import model.Users;
 
 /**
  * Servlet implementation class RegServlet
@@ -74,29 +74,17 @@ public class RegServlet extends HttpServlet {
 			if(role.equals("admin"))
 			{
 			adminDAO.insertAdmin(users, userid);
-			request.getSession().setAttribute("username", username);
-			request.getSession().setAttribute("firstname", firstname);
-			request.getSession().setAttribute("lastname", lastname);
-			request.getSession().setAttribute("email", email);
-			request.getSession().setAttribute("phonenumber", phonenumber);
-			request.getSession().setAttribute("password", password);
-			request.getSession().setAttribute("address", address);
-			request.getSession().setAttribute("description", description);
-			//request.getSession().setAttribute("regUser", users);
-			request.getRequestDispatcher("admin.jsp").forward(request, response);
+			users = adminDAO.selectAdmin(users,userid);
+			users = userDAO.FindLog(users, userid);
+			request.getSession().setAttribute("users", users);
+		request.getRequestDispatcher("admin.jsp").forward(request,response);
 			}
 			else {
 				mechDAO.insertMech(users, userid);
-				request.getSession().setAttribute("username", username);
-				request.getSession().setAttribute("firstname", firstname);
-				request.getSession().setAttribute("lastname", lastname);
-				request.getSession().setAttribute("email", email);
-				request.getSession().setAttribute("phonenumber", phonenumber);
-				request.getSession().setAttribute("password", password);
-				request.getSession().setAttribute("address", address);
-				request.getSession().setAttribute("description", description);
-				request.getSession().setAttribute("regUser", users);
-				request.getRequestDispatcher("mechanic.jsp").forward(request, response);
+				users = mechDAO.selectMech(users,userid);
+				users = userDAO.FindLog(users, userid);
+				request.getSession().setAttribute("users", users);
+			request.getRequestDispatcher("mechanic.jsp").forward(request,response);
 			}
 			
 			

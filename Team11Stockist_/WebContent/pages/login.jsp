@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <% String message = (String)(request.getSession().getAttribute("message")); %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -108,16 +109,18 @@
                                 <div class="content">
                                     <div class="form-group">
                                         <label>Username</label>
-                                        <input type="username" name ="username" placeholder="Username" required="required" class="form-control">
+                                        <input type="text" name ="username" placeholder="Username" required="required" class="form-control">
                                     
                                     </div>
                                     <div class="form-group">
                                         <label>Password</label>
-                                        <input type="password" placeholder="Password" required="required" class="form-control">
+                                        <input type="password" name ="password" placeholder="Password" required="required" class="form-control">
                                     </div> 
-                                  <%String login_msg=(String)request.getAttribute("error");  
-                                    if(login_msg!=null)
-                                    	out.println("<font color=red size=2px>"+login_msg+"</font><br>");  %>                                                             
+                                    <!-- judge input legal --> 
+                                    
+                                  <span style = "color:red; font-size:13px;" id = "td2"><%=message %></span> 
+                                    	
+                                    	<!-- error  end -->                                                           
                                 </div>
                                 <div class="footer text-center">
                                     <button type="submit" class="btn btn-fill btn-warning btn-wd">Login</button>

@@ -67,7 +67,7 @@
 
 </head>
 <body>
-
+ <jsp:useBean id="users" class="model.Users" scope="session" />
 <div class="wrapper">
     <div class="sidebar" data-color="orange" data-image="../assets/img/full-screen-image-3.jpg">
         <!--
@@ -96,7 +96,7 @@
                 </div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                        <%=request.getParameter("username") %>
+                        <%=users.getUsername() %>
                         <b class="caret"></b>
                     </a>
                     <div class="collapse" id="collapseExample">
@@ -109,15 +109,15 @@
                 </div>
             </div>
 
-            <ul class="nav">
+           <ul class="nav">
                 <li>
-                    <a href="user.jsp">
+                    <a href="admin.jsp">
                         <i class="pe-7s-graph"></i>
                         <p>Manage User</p>
                     </a>
                 </li>
                 <li>
-                    <a href="product.jsp">
+                    <a href="productViewServlet">
                         <i class="pe-7s-plugin"></i>
                         <p>Manage Products</p>
                     </a>
@@ -131,14 +131,14 @@
                     </a>                   
                 </li>
                 <li>
-                    <a href="reorder.jsp">
+                    <a href="reorderViewServlet">
                          <i class="pe-7s-graph1"></i>
                         <p>Reorder</p>
                     </a>
                 </li>
 
                 <li>
-                    <a href="report.jsp">
+                    <a href="reportViewServlet">
                          <i class="pe-7s-news-paper"></i>
                         <p>Print Report</p>
                     </a>
@@ -194,14 +194,14 @@
     								<b class="caret"></b>
     							</p>
                             </a>
-                            <ul class="dropdown-menu dropdown-with-icons">
+                                 <ul class="dropdown-menu dropdown-with-icons">
                                 <li>
-                                    <a href="user.jsp">
+                                    <a href="admin.jsp">
                                         <i class="pe-7s-graph"></i> Manage User
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="product.jsp">
+                                    <a href="productViewServlet">
                                         <i class="pe-7s-plugin"></i> Manage Products
                                     </a>
                                 </li>
@@ -211,24 +211,24 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="reorder.jsp">
+                                    <a href="reorderViewServlet">
                                         <i class="pe-7s-graph1"></i> Reorder
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="report.jsp">
+                                    <a href="reportViewServlet">
                                         <i class="pe-7s-news-paper"></i> Print Report
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="information.jsp">
+                                    <a href="admin.jsp">
                                         <i class="pe-7s-tools"></i> Settings
                                     </a>
                                 </li>
                                 <li class="divider"></li>
                               
                                 <li>
-                                    <a href="#" class="text-danger">
+                                    <a href="logoutServlet" class="text-danger">
                                         <i class="pe-7s-close-circle"></i>
                                         Log out
                                     </a>
