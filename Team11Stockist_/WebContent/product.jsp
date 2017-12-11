@@ -438,7 +438,7 @@
                                 
                                 <td class="td-actions text-right" style="">
                               
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="productUpdateServlet?userId=<%=products.getProductID() %>" data-original-title="Edit">
+                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="#" data-original-title="Edit">
                                 <i class="fa fa-edit">
                                 </i></a><a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="productDeleteOneServlet?userId=<%=products.getProductID()%>" data-original-title="Remove">
                                 <i class="fa fa-remove">
