@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%ArrayList<Products> list =(ArrayList<Products>) (request.getAttribute("list")); %>
+<%ArrayList<Supplier> sList =(ArrayList<Supplier>) (request.getAttribute("sList")); %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -95,6 +96,7 @@
 </head>
 <body>
  <jsp:useBean id="users" class="model.Users" scope="session" />
+  <jsp:useBean id="products" class="model.Products" scope="session" />
 <div class="wrapper">
     <div class="sidebar" data-color="orange" data-image="../assets/img/full-screen-image-3.jpg">
         <!--
@@ -309,12 +311,19 @@
                                 </div>
                                  </fieldset>
                                 <fieldset>
-                                 <div class="col-md-6" >
-                                 <div class="form-group">
-                                 <label>supplierID</label>                                                
-                                 <input type="text" number="true" name="supplierID" class="form-control" placeholder="supplierID" />                                        
-                                 </div>
-                                </div>
+                                 <div class="col-md-6">
+                                        <div class="form-group">
+                                        <label>supplierID</label>
+                                            <select name="supplierID" class="selectpicker" data-title="<%=products.getSupplierID() %>" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                                <%for(int i = 0 ; i<sList.size();i++) { 
+                                                	Supplier supplier = sList.get(i);                                	 
+                                                	%>  
+                                                <option value="<%=supplier.getSupplierID()%>"><%=supplier.getSupplierID()%></option>
+                                                <%} %>
+                                            </select>
+                                            
+                                        </div>     
+                                    </div>
                                 </fieldset>
                                 <fieldset>
                               <div class="col-md-6">

@@ -298,7 +298,7 @@
                             <a href="productViewServlet"><font color="gray">REFRESH</font></a>
                             </button>
                              <button class=" btn btn-default" type="button" name="ADD" title="ADD" style="width:100px">
-                            <a href="productAdd.jsp"><font color="gray">ADD</font></a>
+                            <a href="productIssueAddServlet"><font color="gray">ADD</font></a>
                             </button>
                            
                             </div>

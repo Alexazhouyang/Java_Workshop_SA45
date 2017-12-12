@@ -15,16 +15,16 @@ import model.Products;
 import model.Supplier;
 
 /**
- * Servlet implementation class supplierServlet
+ * Servlet implementation class productIssueAddServlet
  */
-@WebServlet("/productViewServlet")
-public class productViewServlet extends HttpServlet {
+@WebServlet("/productIssueAddServlet")
+public class productIssueAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public productViewServlet() {
+    public productIssueAddServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,29 +33,22 @@ public class productViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doProcess(request, response);
+		doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doProcess(request, response);
-	}
-
-	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-		productDAO productDAO = new productDAO() ;
-		ArrayList<Products> list = productDAO.selectProduct();
-        request.setAttribute("list", list);
-        supplierDAO supplierDAO = new supplierDAO();
+		
+		
+		supplierDAO supplierDAO = new supplierDAO();
 		ArrayList<Supplier> sList = supplierDAO.selectSupplier();
 		request.setAttribute("sList", sList);
-        request.getRequestDispatcher("product.jsp").forward(request,
-                response);
 		
 		
-
+		request.getRequestDispatcher("productAdd.jsp").forward(request,response);
+		
 	}
 
 }

@@ -326,6 +326,11 @@
                                    
                                             </div>
                                         </div>
+                                         <div class="footer">
+                                <button class="btn btn-info"  type="button" name="back" title="BACK" style="width:200px"> 
+                            <a href="supplierViewServlet">BACK</a>
+                             </button>
+                             </div>
                                          </fieldset>
                                     </div>
                                     <fieldset>

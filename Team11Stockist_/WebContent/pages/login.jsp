@@ -118,7 +118,11 @@
                                     </div> 
                                     <!-- judge input legal --> 
                                     
-                                  <span style = "color:red; font-size:13px;" id = "td2"><%=message %></span> 
+                                  <span style = "color:red; font-size:13px;" id = "td2"><%
+                                  if( message== null)
+                                  { message = "";}
+                                  out.println(message);
+                                  %></span> 
                                     	
                                     	<!-- error  end -->                                                           
                                 </div>

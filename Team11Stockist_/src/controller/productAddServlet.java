@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.productDAO;
+import dao.supplierDAO;
 import model.Products;
+import model.Supplier;
 
 /**
  * Servlet implementation class productAddServlet
@@ -75,7 +77,9 @@ public class productAddServlet extends HttpServlet {
 			products.setQty(qty);
 			products.setSupplierID(supplierID);			
 			productDAO.insertProduct(products);
-			
+			supplierDAO supplierDAO = new supplierDAO();
+			ArrayList<Supplier> sList = supplierDAO.selectSupplier();
+			request.setAttribute("sList", sList);
 			ArrayList<Products> list = productDAO.selectProduct();
 	        request.setAttribute("list", list);			
 	        request.getRequestDispatcher("product.jsp").forward(request,
