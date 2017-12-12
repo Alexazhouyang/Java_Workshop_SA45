@@ -5,7 +5,7 @@ public class Supplier {
 	private String supplierName;
 	private String contactNumber;
 	private String email;
-	public Supplier(String supplierName, String contactNumber, String email) {
+	public Supplier(int supplierID,String supplierName, String contactNumber, String email) {
 		super();
 		this.supplierID = supplierID;
 		this.supplierName = supplierName;

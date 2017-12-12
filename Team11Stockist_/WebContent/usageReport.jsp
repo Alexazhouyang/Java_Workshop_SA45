@@ -108,7 +108,7 @@
                     <div class="collapse" id="collapseExample">
                         <ul class="nav">
                             <li><a href="pages/login.jsp">Login</a></li>
-                            <li><a href="pages/login.jsp">Logout</a></li>
+                            <li><a href="LogOut">Logout</a></li>
                             <li><a href="mechanic.jsp">Settings</a></li>
                         </ul>
                     </div>
@@ -198,7 +198,7 @@
                                 <li class="divider"></li>
                               
                                 <li>
-                                    <a href="#" class="text-danger">
+                                    <a href="LogOut" class="text-danger">
                                         <i class="pe-7s-close-circle"></i>
                                         Log out
                                     </a>

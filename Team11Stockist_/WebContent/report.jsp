@@ -6,6 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%ArrayList<Reorder> list =(ArrayList<Reorder>) (request.getAttribute("list")); %>
+<%ArrayList<Supplier> sList =(ArrayList<Supplier>) (request.getAttribute("sList")); %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -108,7 +109,7 @@
                     <div class="collapse" id="collapseExample">
                         <ul class="nav">
                            <li><a href="pages/login.jsp">Login</a></li>
-                            <li><a href="pages/login.jsp">Logout</a></li>
+                            <li><a href="LogOut">Logout</a></li>
                             <li><a href="admin.jsp">Settings</a></li>
                         </ul>
                     </div>
@@ -234,7 +235,7 @@
                                 <li class="divider"></li>
                               
                                 <li>
-                                    <a href="logoutServlet" class="text-danger">
+                                    <a href="LogOut" class="text-danger">
                                         <i class="pe-7s-close-circle"></i>
                                         Log out
                                     </a>
@@ -266,8 +267,18 @@
                             <form action="reportSearchServlet" method="post" > 
                             
                              <div class=" pull-left" style="width:50%">
-                            <div class="search" ><input class="form-control" style="width:100% ; margin:10px 10px 0 0" placeholder="Search" type="text" name ="supplierID">                                                       
-                            </div>
+                            <div class="search" >
+                               
+                                <div class="col-md-4">
+                                            <select name="supplierID" class="selectpicker" data-title="supplierID" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                                <%for(int i = 0 ; i<sList.size();i++) { 
+                                                	Supplier supplier = sList.get(i);                                	 
+                                                	%>  
+                                                <option value="<%=supplier.getSupplierID()%>"><%=supplier.getSupplierID()%></option>
+                                                <%} %>
+                                            </select>
+                                        </div>                                      
+                             </div>
                             </div>
                             <div class=" columns columns-right pull-right" style="margin:10px">
                              <button class="btn btn-default" style="margin:0 10px 0 0" type="submit" name="SEARCH" value="Search"> SEARCH                           

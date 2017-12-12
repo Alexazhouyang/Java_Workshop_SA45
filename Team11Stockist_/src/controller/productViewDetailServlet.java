@@ -1,32 +1,26 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.ReorderDAO;
 import dao.productDAO;
-import dao.supplierDAO;
 import model.Products;
-import model.Reorder;
-import model.Supplier;
 
 /**
- * Servlet implementation class reportViewServlet
+ * Servlet implementation class productViewDetailServlet
  */
-@WebServlet("/reportViewServlet")
-public class reportViewServlet extends HttpServlet {
+@WebServlet("/productViewDetailServlet")
+public class productViewDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public reportViewServlet() {
+    public productViewDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,27 +29,21 @@ public class reportViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doProcess(request, response);
+		int userId = Integer.parseInt(request.getParameter("productID"));
+		productDAO productDAO = new productDAO();
+		Products products = new Products();
+		products = productDAO.selectProductsByID(userId);
+		request.getSession().setAttribute("products", products);
+		request.getRequestDispatcher("productDetail.jsp").forward(request,response);
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doProcess(request, response);
-	}
-
-	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ReorderDAO reorderDAO = new ReorderDAO();
-		supplierDAO supplierDAO = new supplierDAO();
-		ArrayList<Reorder> list = reorderDAO.selectReorder();
-		ArrayList<Supplier> sList = supplierDAO.selectSupplier();
-		request.setAttribute("sList", sList);
-        request.setAttribute("list", list);
-        
-        request.getRequestDispatcher("report.jsp").forward(request,
-                response);
 		
+		doGet(request, response);
 	}
 
 }

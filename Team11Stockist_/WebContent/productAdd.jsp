@@ -4,16 +4,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%ArrayList<Products> list =(ArrayList<Products>) (request.getAttribute("list")); %>
-
-
 <!doctype html>
 <html lang="en">
 <head>
+<!-- checked  -->
+    <script type="text/javascript">
+        
+        function chickAll(){
+        // 全选方法
+            var chickobj = document.getElementsByName("num");
+            for(var i = 0 ; i<chickobj.length ; i++){
+            
+                chickobj[i].checked = "checked";
+            }
+            
+        }
+        function Nochick(){
+        // 反选方法   
+            var chickobj = document.getElementsByName("num");
+            for(var i = 0 ; i<chickobj.length ; i++){
+            
+                chickobj[i].checked = !chickobj[i].checked ;
+            }
+            
+        }
+    </script>
+    
 	<meta charset="utf-8" />
+	
 	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Team11_Stockist</title>
+	<title>Manage Products</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -72,7 +94,7 @@
 
 </head>
 <body>
-<jsp:useBean id="users" class="model.Users" scope="session" />
+ <jsp:useBean id="users" class="model.Users" scope="session" />
 <div class="wrapper">
     <div class="sidebar" data-color="orange" data-image="../assets/img/full-screen-image-3.jpg">
         <!--
@@ -83,12 +105,12 @@
         -->
 
         <div class="logo">
-            <a href="mechanic.jsp" class="logo-text">
+            <a href="admin.jsp" class="logo-text">
                 Team11
             </a>
         </div>
 		<div class="logo logo-mini">
-			<a href="mechanic.jsp" class="logo-text">
+			<a href="admin.jsp" class="logo-text">
 				T11
 			</a>
 		</div>
@@ -114,27 +136,50 @@
                 </div>
             </div>
 
-            <ul class="nav">
-                
+           <ul class="nav">
                 <li>
-                    <a href="viewProductServlet">
+                    <a href="admin.jsp">
+                        <i class="pe-7s-graph"></i>
+                        <p>Manage User</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="productViewServlet">
                         <i class="pe-7s-plugin"></i>
-                        <p>View Products</p>
+                        <p>Manage Products</p>
                     </a>
                    
                 </li>
 
-               
-               
+                <li>
+                    <a href="supplierViewServlet">
+                        <i class="pe-7s-note2"></i>
+                        <p>Manage Supplier</p>
+                    </a>                   
+                </li>
+                <li>
+                    <a href="reorderViewServlet">
+                         <i class="pe-7s-graph1"></i>
+                        <p>Reorder</p>
+                    </a>
+                </li>
 
                 <li>
-                    <a href="usageViewServlet">
+                    <a href="reportViewServlet">
                          <i class="pe-7s-news-paper"></i>
                         <p>Print Report</p>
                     </a>
                 </li>
 
-                
+                <li>
+                    <a  href="email.jsp">
+                        <i class="pe-7s-mail"></i>
+                        <p>Sent Email
+                          
+                        </p>
+                    </a>
+                   
+                </li>
             </ul>
     	</div>
     </div>
@@ -155,7 +200,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Stokist</a>
+                    <a class="navbar-brand" href="#">Manage Products</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -176,21 +221,34 @@
     								<b class="caret"></b>
     							</p>
                             </a>
-                            <ul class="dropdown-menu dropdown-with-icons">
-                            
-                                    <a href="viewProductServlet">
-                                        <i class="pe-7s-plugin"></i> View Products
+                                 <ul class="dropdown-menu dropdown-with-icons">
+                                <li>
+                                    <a href="admin.jsp">
+                                        <i class="pe-7s-graph"></i> Manage User
                                     </a>
                                 </li>
-                               
-                                
                                 <li>
-                                    <a href="usageViewServlet">
+                                    <a href="productViewServlet">
+                                        <i class="pe-7s-plugin"></i> Manage Products
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="supplierViewServlet">
+                                        <i class="pe-7s-note2"></i> Manage Supplier
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="reorderViewServlet">
+                                        <i class="pe-7s-graph1"></i> Reorder
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="reportViewServlet">
                                         <i class="pe-7s-news-paper"></i> Print Report
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="mechanic.jsp">
+                                    <a href="admin.jsp">
                                         <i class="pe-7s-tools"></i> Settings
                                     </a>
                                 </li>
@@ -216,165 +274,141 @@
         
         <!-- Main Content in put here -->
         <!-- Main Content in put here -->
-          <div class="content">
-            <div class="container-fluid">
+        <div class="content">
+           <div class="col-md-12">
+                    <div class="card">
+                       
+                            <div class="content">
+                                <legend>Add New Products</legend>
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-
-                           <div class="fixed-table-toolbar"><div class="bars pull-left"><div class="toolbar">
-                                <!--        Here you can write extra buttons/actions for the toolbar   
-                                           -->                          
-                            
-                            </div></div>
-                            <form action="searchProductServlet" method="post" > 
-                            
-                             <div class=" pull-left" style="width:50%">
-                            <div class="search" ><input class="form-control" style="width:100% ; margin:10px 10px 0 0" placeholder="Search" type="text" name ="productName">                                                       
-                            </div>
-                            </div>
-                            <div class=" columns columns-right pull-right" style="margin:10px">
-                             <button class="btn btn-default" style="margin:0 10px 0 0" type="submit" name="SEARCH" value="Search"> SEARCH                           
-                            </button>   
-                           </form>
-                            <button class=" btn btn-default" type="button" name="refresh" title="Refresh" >
-                            <a href="viewProductServlet"><font color="gray">REFRESH</font></a>
-                            </button>
-                            
-                           
-                            </div>
-                           
-                            
-                            
-                            </div>
-                           
-                           
-                            <div class="fixed-table-container" style="padding-bottom: 0px;">
-                            <div class="fixed-table-header" style="display: none;">
-                            
-                            <table>
-                            </table>
-                            </div>
-                            <div class="fixed-table-body">
-                            <div class="fixed-table-loading" style="top: 42px;">Loading, please wait...</div>
-                            <table id="bootstrap-table" class="table table-hover">
-                                <thead>
-                                <tr>
-                                <th class="bs-checkbox " style="width: 36px; " data-field="state">
-                                <div class="th-inner ">
-                                <input name="btSelectAll" type="checkbox">
+                                
+                                <!-- ADD -->
+                                <form  id="allInputsFormValidation" class="form-horizontal" action="productAddServlet" metohd="post" >
+                                <fieldset>
+                                <div class="col-md-6">
+                                 <div class="form-group">
+                                 <label>partNO</label>                                                
+                                 <input type="text" name="partNO" class="form-control" placeholder="partNO" />                                        
+                                 </div>
                                 </div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th class="text-center" style="" data-field="productID">
-                                <div class="th-inner ">productID</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                 <th style="" data-field="partNO">
-                                <div class="th-inner ">partNO</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th style="" data-field="productName">
-                                <div class="th-inner ">productName</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th style="" data-field="unitPrice">
-                                <div class="th-inner ">unitPrice</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th style="" data-field="supplierID">
-                                <div class="th-inner">supplierID</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th style="" data-field="description">
-                                <div class="th-inner ">description</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th style="" data-field="color">
-                                <div class="th-inner ">color</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th style="" data-field="dimension">
-                                <div class="th-inner">dimension</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th style="" data-field="manufacturer">
-                                <div class="th-inner">manufacturer</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th style="" data-field="reorderLevel">
-                                <div class="th-inner ">reorderLevel</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th style="" data-field="minOrderQty">
-                                <div class="th-inner ">minOrderQty</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th style="" data-field="shelfLocation">
-                                <div class="th-inner">shelfLocation</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                 <th style="" data-field="qty">
-                                <div class="th-inner ">totalQty</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                 <th style="" data-field="damageQty">
-                                <div class="th-inner ">damageQty</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                
-                                
-                                <th class="td-actions text-right" style="" data-field="actions">
-                                <div class="th-inner ">Actions</div><div class="fht-cell">
-                                </div></th>
-                                </tr></thead>
-                                <tbody>
-                                
-                              
-                                
-                                <!-- list detail & operation -->
-                                 <%for(int i = 0 ; i<list.size();i++) { 
-                                	 Products products = list.get(i);%>
-                                
-                                <tr data-index="<%=products.getProductID() %>">
-                                <td class="bs-checkbox"><input value="<%=products.getProductID()%>" data-index="<%=products.getProductID() %>" name="num" type="checkbox"></td>
-                                <td class="text-center" style=""><font color="black"><%=products.getProductID()%></font></td>
-                                <td style=""><font color="black"><%=products.getPartNO()%></font></a></td>
-                                <td style=""><font color="black"><%=products.getProductName()%></font></td>                              
-                                <td style=""><font color="black"><%=products.getUnitPrice() %></font></td>
-                                <td style=""><font color="black"><%=products.getSupplierID() %></font></td>
-                                <td style=""><font color="black"><%=products.getDescription() %></font></td>
-                                <td style=""><font color="black"><%=products.getColor() %></font></td>
-                                 <td style=""><font color="black"><%=products.getDimension() %></font></td>
-                                <td style=""><font color="black"><%=products.getManufacturer() %></font></td>
-                                <td style=""><font color="black"><%=products.getReorderLevel() %></font></td>
-                                <td style=""><font color="black"><%=products.getMinOrderQty()%></font></td>
-                                 <td style=""><font color="black"><%=products.getShelfLocation() %></font></td>
-                                <td style=""><font color="black"><%=products.getQty()%></font></td>
-                                <td style=""><font color="black"><%=products.getDamageQty()%></font></td>
-                                
-                                <td class="td-actions text-right" style="">
-                              <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="productDetailServlet?userId=<%=products.getProductID() %>" data-original-title="Detail">
-                                <i class="fa fa-edit">
-                                </i></a>
+                                 </fieldset>
+                                <fieldset>
+                                <div class="col-md-6" >
+                                 <div class="form-group">
+                                 <label>productName</label>                                                
+                                 <input type="text" name="productName" class="form-control" placeholder="productName" />                                        
+                                 </div>
+                                </div>
+                                </fieldset>
+                                <fieldset>
+                                 <div class="col-md-6">
+                                 <div class="form-group">
+                                 <label>unitPrice</label>                                                
+                                 <input type="text" name="unitPrice" class="form-control" placeholder="unitPrice" />                                        
+                                 </div>
+                                </div>
+                                 </fieldset>
+                                <fieldset>
+                                 <div class="col-md-6" >
+                                 <div class="form-group">
+                                 <label>supplierID</label>                                                
+                                 <input type="text" name="supplierID" class="form-control" placeholder="supplierID" />                                        
+                                 </div>
+                                </div>
+                                </fieldset>
+                                <fieldset>
+                              <div class="col-md-6">
+                                 <div class="form-group">
+                                  <label>shelfLocation</label>                                                
+                                 <input type="text" name="shelfLocation" class="form-control" placeholder="shelfLocation" /> 
+                                                                        
+                                 </div>
+                                </div>
+                                 </fieldset>
+                                <fieldset>
+                                <div class="col-md-6" >
+                                 <div class="form-group">
+                                 <label>color</label>                                                
+                                 <input type="text" name="color" class="form-control" placeholder="color" />                                        
+                                 </div>
+                                </div>
+                                </fieldset>
+                                <fieldset>
+                                <div class="col-md-6">
+                                 <div class="form-group">
+                                 <label>dimension</label>                                                
+                                 <input type="text" name="dimension" class="form-control" placeholder="dimension" />                                        
+                                 </div>
+                                </div>
+                                 </fieldset>
+                                <fieldset>
+                                <div class="col-md-6">
+                                 <div class="form-group">
+                                 <label>manufacturer</label>                                                
+                                 <input type="text" name="manufacturer" class="form-control" placeholder="manufacturer" />                                        
+                                 </div>
+                                </div>
+                                </fieldset>
+                                <fieldset>
+                                 <div class="col-md-6">
+                                 <div class="form-group">
+                                 <label>reorderLevel</label>                                                
+                                 <input type="text" name="reorderLevel" class="form-control" placeholder="reorderLevel" />                                        
+                                 </div>
+                                </div>
+                                 </fieldset>
+                                   
                                  
-                                </td></tr>
-                                 <% 
-                                 }
-                                 %>
-                                                              
-                                
-                            <table>
-                            <tbody>
-                            <tr></tr>
-                            </tbody>
-                            </table>
-                            </div>
-                          </div>
-                        </div><!--  end card  -->
-                    </div> <!-- end col-md-12 -->
-                </div> <!-- end row -->
+                                <fieldset>
+                                <div class="col-md-6" >
+                                 <div class="form-group">
+                                 <label>minOrderQty</label>                                                
+                                 <input type="text" aria-invalid="true" name="minOrderQty" class="form-control valid"  placeholder="minOrderQty" />
+                                                                        
+                                 </div>
+                                </div>
+                                </fieldset>
+                                <fieldset>
+                                 <div class="col-md-6">
+                                 <div class="form-group">
+                                 <label>qty</label>                                                
+                                 <input type="text" name="qty" class="form-control" placeholder="qty" />                                        
+                                 </div>
+                                </div>
+                                 </fieldset>
+                                <fieldset>
+                                <div class="col-md-6" >
+                                 <div class="form-group">
+                                 <label >damageQty</label>                                                
+                                 <input type="text" number="true" name="damageQty" class="form-control" placeholder="damageQty" />                                        
+                                 </div>                                 
+                                </div>
+                                </fieldset>
+                                <fieldset>
+                                <div class="col-md-12">
+                                 <div class="form-group">
+                                 <label>description</label>                                                
+                                 <input type="text" name="description" class="form-control" placeholder="description" />         
+                                 </div>
+                                </div>
+                                </fieldset>
+                                <fieldset>
+                                  
+                                  <div class="footer">
+                                <button class="btn btn-info btn-fill" type="submit" name="add" title="Add" style="width:200px"> 
+                             Add New Product</button>
+                             </div>
+                             <div class="footer">
+                                <button class="btn btn-info"  type="button" name="back" title="BACK" style="width:200px"> 
+                            <a href="productViewServlet">BACK</a>
+                             </button>
+                             </div>
+                             <fieldset>
+                             
+                                </form>
+                 
+                </div>
+                </div>
 
             </div>
         </div>

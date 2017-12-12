@@ -1,32 +1,26 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import dao.ReorderDAO;
-import dao.productDAO;
-import dao.supplierDAO;
-import model.Products;
-import model.Reorder;
-import model.Supplier;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class reportViewServlet
+ * Servlet implementation class LogOut
  */
-@WebServlet("/reportViewServlet")
-public class reportViewServlet extends HttpServlet {
+@WebServlet("/LogOut")
+public class LogOut extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public reportViewServlet() {
+    public LogOut() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,20 +36,15 @@ public class reportViewServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doProcess(request, response);
 	}
-
-	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ReorderDAO reorderDAO = new ReorderDAO();
-		supplierDAO supplierDAO = new supplierDAO();
-		ArrayList<Reorder> list = reorderDAO.selectReorder();
-		ArrayList<Supplier> sList = supplierDAO.selectSupplier();
-		request.setAttribute("sList", sList);
-        request.setAttribute("list", list);
-        
-        request.getRequestDispatcher("report.jsp").forward(request,
-                response);
-		
+	
+	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		//delete session
+		HttpSession session=request.getSession();  
+        session.invalidate();
+        response.sendRedirect("pages/login.jsp");
 	}
 
 }

@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.function.Supplier;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ReorderDAO;
+import dao.supplierDAO;
 import model.Products;
 import model.Reorder;
+
 
 /**
  * Servlet implementation class reportSearchServlet
@@ -46,6 +49,9 @@ public class reportSearchServlet extends HttpServlet {
 		Reorder reorder = new Reorder();
 		int supplierID = 0;
 		ReorderDAO reorderDAO =new ReorderDAO();
+		supplierDAO supplierDAO = new supplierDAO();
+		ArrayList<model.Supplier> sList = supplierDAO.selectSupplier();
+		request.setAttribute("sList", sList);
 		
 try {
 			
@@ -53,11 +59,10 @@ try {
 			
 			if(request.getParameter("supplierID") != null)
 			{
-			ArrayList<Reorder> list = reorderDAO.selectProductsByID(supplierID);		
+			ArrayList<Reorder> list = reorderDAO.selectProductsByID(supplierID);	
 			request.setAttribute("list", list);
 			request.setAttribute("supplierID", supplierID);
-	        request.getRequestDispatcher("report.jsp").forward(request,
-	                response);
+	        request.getRequestDispatcher("report.jsp").forward(request,response);
 			}
 			else {
 				

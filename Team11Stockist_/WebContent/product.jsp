@@ -127,7 +127,7 @@
                     <div class="collapse" id="collapseExample">
                         <ul class="nav">
                             <li><a href="pages/login.jsp">Login</a></li>
-                            <li><a href="pages/login.jsp">Logout</a></li>
+                            <li><a href="LogOut">Logout</a></li>
                             <li><a href="admin.jsp">Settings</a></li>
                         </ul>
                     </div>
@@ -253,7 +253,7 @@
                                 <li class="divider"></li>
                               
                                 <li>
-                                    <a href="logoutServlet" class="text-danger">
+                                    <a href="LogOut" class="text-danger">
                                         <i class="pe-7s-close-circle"></i>
                                         Log out
                                     </a>
@@ -279,40 +279,38 @@
                     <div class="col-md-12">
                         <div class="card">
 
-                           <div class="fixed-table-toolbar"><div class="bars pull-left"><div class="toolbar">
+                           <div class="fixed-table-toolbar" ><div class="bars pull-left"><div class="toolbar">
                                 <!--        Here you can write extra buttons/actions for the toolbar   
                                            -->                          
                             
                             </div></div>
-                            <form action="productSearchServlet" method="post" > 
+                            <form action="productSearchServlet" method="post" style="margin:20px 0 0 0"> 
                             
-                             <div class=" pull-left" style="width:50%">
-                            <div class="search" ><input class="form-control" style="width:100% ; margin:10px 10px 0 0" placeholder="Search" type="text" name ="productName">                                                       
+                             <div class=" pull-left" style="width:50%" >
+                            <div class="search" ><input class="form-control" style="width:100% ; margin:10px 10px 0 0" placeholder="Search(Product Name)" type="text" name ="productName">                                                       
                             </div>
                             </div>
-                            <div class=" columns columns-right pull-right" style="margin:10px">
-                             <button class="btn btn-default" style="margin:0 10px 0 0" type="submit" name="SEARCH" value="Search"> SEARCH                           
+                            <div class=" columns columns-right pull-right" style="margin:10px;">
+                             <button class="btn btn-default" style="margin:0 10px 0 0 ;width:100px" type="submit" name="SEARCH" value="Search">SEARCH                           
                             </button>   
                            </form>
-                            <button class=" btn btn-default" type="button" name="refresh" title="Refresh" >
+                            <button class=" btn btn-default" style="margin:0 10px 0 0;width:100px" type="button" name="refresh" title="Refresh" >
                             <a href="productViewServlet"><font color="gray">REFRESH</font></a>
                             </button>
-                            
+                             <button class=" btn btn-default" type="button" name="ADD" title="ADD" style="width:100px">
+                            <a href="productAdd.jsp"><font color="gray">ADD</font></a>
+                            </button>
                            
                             </div>
                            
                             
                             
-                            </div>
-                           
-                           
-                            <div class="fixed-table-container" style="padding-bottom: 0px;">
-                            <div class="fixed-table-header" style="display: none;">
                             
-                            <table>
-                            </table>
-                            </div>
-                            <div class="fixed-table-body">
+                           
+                           
+                            <div class="fixed-table-container" style="padding-bottom: 0px;" >
+                          
+                            <div class="fixed-table-body" style="margin:50px 0 0 0">
                             <div class="fixed-table-loading" style="top: 42px;">Loading, please wait...</div>
                             <table id="bootstrap-table" class="table table-hover">
                                 <thead>
@@ -387,33 +385,8 @@
                                 </tr></thead>
                                 <tbody>
                                 
-                                <!-- ADD -->
-                                <form action="productAddServlet" metohd="post" >
-                                <tr >
-                                <td></td>
-                                <td class="text-center " style=""></td>
-                                <td style=""><input class="form-control" style="width:200px" type="text" name="partNO" placeholder="partNO" /></td>  
-                                <td style=""><input class="form-control" style="width:200px" type="text" name="productName" placeholder="productName" /></td>                               
-                                <td style=""><input class="form-control" style="width:200px" type="text" name="unitPrice"placeholder="unitPrice"/></td>
-                                <td style=""><input  class="form-control" style="width:200px" type="text" name="supplierID"placeholder="supplierID"/></td>
-                          
-                                <td style=""><input  class="form-control" style="width:200px" type="text" name="description"placeholder="description"/></td>
-                                 <td style=""><input class="form-control" style="width:200px" type="text" name="color" placeholder="color" /></td>                               
-                                <td style=""><input class="form-control" style="width:200px" type="text" name="dimension"placeholder="dimension"/></td>
-                                <td style=""><input  class="form-control" style="width:200px" type="text" name="manufacturer"placeholder="manufacturer"/></td>
-                                 <td style=""><input class="form-control" style="width:200px" type="text" name="reorderLevel" placeholder="reorderLevel" /></td>                               
-                                <td style=""><input class="form-control" style="width:200px" type="text" name="minOrderQty"placeholder="minOrderQty"/></td>
-                                 <td style=""><input  class="form-control" style="width:200px" type="text" name="shelfLocation"placeholder="shelfLocation"/></td>
-                                 <td style=""><input class="form-control" style="width:200px" type="text" name="qty" placeholder="totalQty" /></td>                               
-                                <td style=""><input class="form-control" style="width:200px" type="text" name="damageQty"placeholder="damageQty"/></td>
-                                <td class="td-actions text-right" style="">
                                 
-                                <button class="btn btn-default" type="submit" name="add" title="Add">
-                             ADD</button>
-                              
-                               
-                                </td></tr>
-                                </form>
+                                
                                 
                                 <!-- list detail & operation -->
                                  <%for(int i = 0 ; i<list.size();i++) { 
@@ -438,7 +411,7 @@
                                 
                                 <td class="td-actions text-right" style="">
                               
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="#" data-original-title="Edit">
+                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="productUpdateServlet?productID=<%=products.getProductID()%>" data-original-title="Edit">
                                 <i class="fa fa-edit">
                                 </i></a><a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="productDeleteOneServlet?userId=<%=products.getProductID()%>" data-original-title="Remove">
                                 <i class="fa fa-remove">
@@ -448,13 +421,12 @@
                                  }
                                  %>
                                                               
+                                </tbody>
+                                </table>
                                 
-                            <table>
-                            <tbody>
-                            <tr></tr>
-                            </tbody>
-                            </table>
+                           
                             </div>
+                          </div>
                           </div>
                         </div><!--  end card  -->
                     </div> <!-- end col-md-12 -->

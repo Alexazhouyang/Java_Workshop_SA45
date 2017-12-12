@@ -135,7 +135,7 @@
                 <li>
                     <a href="usage_report.jsp">
                          <i class="pe-7s-news-paper"></i>
-                        <p>Print Report</p>
+                        <p>Transaction History</p>
                     </a>
                 </li>
 
@@ -200,7 +200,7 @@
                                 
                                 <li>
                                     <a href="usage_report.jsp">
-                                        <i class="pe-7s-news-paper"></i> Print Report
+                                        <i class="pe-7s-news-paper"></i> Transaction History
                                     </a>
                                 </li>
                                 <li>
