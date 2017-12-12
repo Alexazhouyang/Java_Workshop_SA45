@@ -47,8 +47,9 @@ public class reportViewServlet extends HttpServlet {
 
 	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReorderDAO reorderDAO = new ReorderDAO();
-		supplierDAO supplierDAO = new supplierDAO();
+		
 		ArrayList<Reorder> list = reorderDAO.selectReorder();
+		supplierDAO supplierDAO = new supplierDAO();
 		ArrayList<Supplier> sList = supplierDAO.selectSupplier();
 		request.setAttribute("sList", sList);
         request.setAttribute("list", list);

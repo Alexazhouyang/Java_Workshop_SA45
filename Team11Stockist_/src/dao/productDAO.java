@@ -16,7 +16,7 @@ public class productDAO {
 	 * update supplier information(not update)
 	 */
 	
-	public void updateProduct(Products user) {
+	public void updateProduct(Products user, int productID) {
 		
 		DBHelper dbHelper = new DBHelper();
 		String sql = "";
@@ -52,9 +52,10 @@ public class productDAO {
 			+",damageQty="
 			+ user.getDamageQty()
 			
-			+" WHERE productID="+ user.getProductID();
+			+" WHERE productID="+ productID;
 			
-			statement.executeUpdate(sql);				
+			statement.executeUpdate(sql);	
+			
 			} catch (SQLException e) {
 			e.printStackTrace();
 			}	

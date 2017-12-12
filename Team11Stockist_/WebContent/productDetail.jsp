@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%ArrayList<Products> list =(ArrayList<Products>) (request.getAttribute("list")); %>
+<%ArrayList<Supplier> sList =(ArrayList<Supplier>) (request.getAttribute("sList")); %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -276,97 +277,147 @@
        <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="card">
                             <div class="header">
                                 <h4 class="title">Edit Products</h4>
                             </div>
                             <div class="content">
                             
-                                <form action="productUpdateServlet" method="post" name="Form">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>ProductID</label>
-                                                <input type="text" name="productID" class="form-control" placeholder="ProductID" value="<%=products.getProductID()%>"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>ProductName</label>                                                
-                                                <input type="text" name="productName()" class="form-control" placeholder="ProductName" value="<%=products.getProductName()%>" />
+                               <form action="productUpdateServlet" method="post" name="Form">
+                                
+                                     <div class="row">
+                                    <fieldset>
+                                      
                                         
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-5">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Email address</label>
-                                                <input type="text" name="email" class="form-control" placeholder="Email" value = "<%=users.getEmail() %>" />
+                                                <label>PartNO</label>                                                
+                                                <input type="text" name="min" min="6" name="partNO" class="form-control" placeholder="PartNO" value="<%=products.getPartNO()%>" />
+                                         </div>
+                                            </div>
+                                      
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>ProductName</label>
+                                                <input type="text" name="productName" class="form-control" placeholder="ProductName" value = "<%=products.getProductName()%>" />
                                             </div>
                                         </div>
+                                         </fieldset>
+                                       <fieldset>
+               
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>UnitPrice</label>
+                                                <input type="text" number="true" name="unitPrice" class="form-control" placeholder="UnitPrice" value="<%=products.getUnitPrice()%>"/>
+                                               
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-5">
+                                        <div class="form-group">
+                                        <label>supplierID</label>
+                                            <select name="supplierID" class="selectpicker" data-title="<%=products.getSupplierID() %>" data-style="btn-default btn-block" data-menu-style="dropdown-blue">
+                                                <%for(int i = 0 ; i<sList.size();i++) { 
+                                                	Supplier supplier = sList.get(i);                                	 
+                                                	%>  
+                                                <option value="<%=supplier.getSupplierID()%>"><%=supplier.getSupplierID()%></option>
+                                                <%} %>
+                                            </select>
+                                            
+                                        </div>     
                                     </div>
+                                    </fieldset>
+                                    <fieldset>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
+                                    
+                                        <div class="col-md-10">
                                             <div class="form-group">
-                                                <label>First Name</label>
-                                                <input type="text" name="firstName" class="form-control" placeholder="First Name" value="<%=users.getFirstname()%>"/>
+                                                <label>Description</label>
+                                                <input type="text" name="description" class="form-control" placeholder="Description" value="<%=products.getDescription() %>"/>
+                                            </div>
+                                      
+                                    </div>
+                                    </fieldset>
+                                    <fieldset>
+                                    
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Color</label>
+                                                <input type="text" name="color" class="form-control" placeholder="Color" value="<%=products.getColor()%>"/>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Dimension</label>
+                                                <input type="text" name="dimension" class="form-control" placeholder="Dimension" value="<%=products.getDimension() %>" />
+                                            </div>
+                                        </div>
+                                        </fieldset>
+                                        <fieldset>
+                                         
+                                         <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Manufacturer</label>
+                                                <input type="text" name="manufacturer" class="form-control" placeholder="Manufacturer" value="<%=products.getManufacturer()%>" />
+                                            </div>
+                                        </div>
+                                        
+                                         <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>ReorderLevel</label>
+                                                <input type="text" name="reorderLevel" class="form-control" placeholder="ReorderLevel" value="<%=products.getReorderLevel() %>" />
+                                            </div>
+                                        </div>
+                                        </fieldset>
+                                        <fieldset>
+                                      
+                                         <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>MinOrderQty</label>
+                                                <input type="text" number="true" name="minOrderQty" class="form-control" placeholder="MinOrderQty" value="<%=products.getMinOrderQty()%>" />
+                                            </div>
+                                        </div>
+                                        
+                                         <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>ShelfLocation</label>
+                                                <input type="text" name="shelfLocation" class="form-control" placeholder="ShelfLocation" value="<%=products.getShelfLocation()%>" />
+                                            </div>
+                                        </div>
+                                        </fieldset>
+                                         <fieldset>
+                                        
+                                         <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Quantity</label>
+                                                <input type="text" name="qty" number="true" class="form-control" placeholder="Quantity" value="<%=products.getQty() %>" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>DamageQuantity</label>
+                                                <input type="text" name="damageQty" number="true" class="form-control" placeholder="DamageQuantity" value="<%=products.getDamageQty() %>" />
+                                            </div>
+                                        </div>
+                                        </fieldset>
+                                         <fieldset>
+                                       <div class="col-md-5">
+                                            <div class="form-group">
                                                 
+                                               <input type="hidden" name="productID" class="form-control" placeholder="productID" value="<%=products.getProductID() %>"/>  
+                                            <button type="submit" class="btn btn-info btn-fill ">Update Profile</button>
+                                   
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Last Name</label>
-                                                <input type="text" name="lastName" class="form-control" placeholder="Last Name" value="<%=users.getLastname()%>"/>
-                                            </div>
-                                        </div>
+                                         </fieldset>
                                     </div>
+                                    <fieldset>
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Address</label>
-                                                <input type="text" name="address" class="form-control" placeholder="Home Address" value="<%=users.getAddress() %>"/>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Password</label>
-                                                <input type="text" name="password" class="form-control" placeholder="Password" value="<%=users.getPassword() %>"/>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>PhoneNumber</label>
-                                                <input type="text" name="phoneNumber" class="form-control" placeholder="PhoneNumber" value="<%=users.getPhonenumber() %>" />
-                                            </div>
-                                        </div>
-                                       <div class="col-md-4">
-                                            <div class="form-group">
-                                                
-                                               <input type="hidden" name="userID" class="form-control" placeholder="userID" value="<%=users.getUserID() %>"/>  
-                                            </div>
-                                        </div>
-                                    </div>
-
-                               
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>About Me</label>
-                                                <textarea type="text" name="description" rows="5" class="form-control" placeholder="Here can be your description" value="Here can be your description"><%=users.getDescription() %></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                        
-
-                                    <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
-                                    <div class="clearfix"></div>
+                                   
+                                 </fieldset>
                                 </form>
                             </div>
                         </div>
@@ -538,6 +589,15 @@
     <script>
         $().ready(function(){
             demo.initCharts();
+        });
+    </script>
+     <script type="text/javascript">
+        $().ready(function(){
+
+            $('#registerFormValidation').validate();
+            $('#loginFormValidation').validate();
+            $('#allInputsFormValidation').validate();
+
         });
     </script>
 

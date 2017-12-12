@@ -321,10 +321,7 @@
                                 </div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th class="text-center" style="" data-field="productID">
-                                <div class="th-inner ">productID</div>
-                                <div class="fht-cell">
-                                </div></th>
+                             
                                  <th style="" data-field="partNO">
                                 <div class="th-inner ">partNO</div>
                                 <div class="fht-cell">
@@ -345,18 +342,8 @@
                                 <div class="th-inner ">description</div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th style="" data-field="color">
-                                <div class="th-inner ">color</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th style="" data-field="dimension">
-                                <div class="th-inner">dimension</div>
-                                <div class="fht-cell">
-                                </div></th>
-                                <th style="" data-field="manufacturer">
-                                <div class="th-inner">manufacturer</div>
-                                <div class="fht-cell">
-                                </div></th>
+                                
+                             
                                 <th style="" data-field="reorderLevel">
                                 <div class="th-inner ">reorderLevel</div>
                                 <div class="fht-cell">
@@ -365,10 +352,7 @@
                                 <div class="th-inner ">minOrderQty</div>
                                 <div class="fht-cell">
                                 </div></th>
-                                <th style="" data-field="shelfLocation">
-                                <div class="th-inner">shelfLocation</div>
-                                <div class="fht-cell">
-                                </div></th>
+                               
                                  <th style="" data-field="qty">
                                 <div class="th-inner ">totalQty</div>
                                 <div class="fht-cell">
@@ -394,26 +378,24 @@
                                 
                                 <tr data-index="<%=products.getProductID() %>">
                                 <td class="bs-checkbox"><input value="<%=products.getProductID()%>" data-index="<%=products.getProductID() %>" name="num" type="checkbox"></td>
-                                <td class="text-center" style=""><font color="black"><%=products.getProductID()%></font></td>
+                                
                                 <td style=""><a href="productViewServlet?userId=<%=products.getProductID()%>" ><font color="black"><%=products.getPartNO()%></font></a></td>
                                 <td style=""><font color="black"><%=products.getProductName()%></font></td>                              
                                 <td style=""><font color="black"><%=products.getUnitPrice() %></font></td>
                                 <td style=""><font color="black"><%=products.getSupplierID() %></font></td>
                                 <td style=""><font color="black"><%=products.getDescription() %></font></td>
-                                <td style=""><font color="black"><%=products.getColor() %></font></td>
-                                 <td style=""><font color="black"><%=products.getDimension() %></font></td>
-                                <td style=""><font color="black"><%=products.getManufacturer() %></font></td>
+                              
                                 <td style=""><font color="black"><%=products.getReorderLevel() %></font></td>
                                 <td style=""><font color="black"><%=products.getMinOrderQty()%></font></td>
-                                 <td style=""><font color="black"><%=products.getShelfLocation() %></font></td>
+                                
                                 <td style=""><font color="black"><%=products.getQty()%></font></td>
                                 <td style=""><font color="black"><%=products.getDamageQty()%></font></td>
                                 
                                 <td class="td-actions text-right" style="">
                               
-                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="productUpdateServlet?productID=<%=products.getProductID()%>" data-original-title="Edit">
+                                <a rel="tooltip" title="" class="btn btn-simple btn-warning btn-icon table-action edit" href="productViewDetailServlet?productID=<%=products.getProductID()%>" data-original-title="Edit">
                                 <i class="fa fa-edit">
-                                </i></a><a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="productDeleteOneServlet?userId=<%=products.getProductID()%>" data-original-title="Remove">
+                                </i></a><a rel="tooltip" title="" class="btn btn-simple btn-danger btn-icon table-action remove" href="productDeleteOneServlet?productID=<%=products.getProductID()%>" data-original-title="Remove">
                                 <i class="fa fa-remove">
                                 </i></a>
                                 </td></tr>

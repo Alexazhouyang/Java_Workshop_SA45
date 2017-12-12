@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.productDAO;
+import dao.supplierDAO;
 import model.Products;
+import model.Supplier;
 
 /**
  * Servlet implementation class productUpdateServlet
@@ -31,11 +33,19 @@ public class productUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
 		int productID = Integer.parseInt(request.getParameter("productID"));
 		Products products =new Products();
 		String  partNO,productName,description,color,dimension,manufacturer,reorderLevel,shelfLocation;
 		int qty,damageQty,minOrderQty,supplierID;
-		float unitPric;
+		float unitPrice;
 		productDAO productDAO = new productDAO();
 		try {
 			partNO =request.getParameter("partNO");
@@ -46,7 +56,7 @@ public class productUpdateServlet extends HttpServlet {
 			manufacturer = request.getParameter("manufacturer");
 			reorderLevel = request.getParameter("reorderLevel");
 			shelfLocation = request.getParameter("shelfLocation");
-			unitPric = Float.parseFloat(request.getParameter("unitPrice"));
+			unitPrice = Float.parseFloat(request.getParameter("unitPrice"));
 			qty = Integer.parseInt(request.getParameter("qty"));
 			damageQty = Integer.parseInt(request.getParameter("damageQty"));
 			minOrderQty = Integer.parseInt(request.getParameter("minOrderQty"));
@@ -59,30 +69,25 @@ public class productUpdateServlet extends HttpServlet {
 			products.setManufacturer(manufacturer);
 			products.setReorderLevel(reorderLevel);
 			products.setShelfLocation(shelfLocation);
-			products.setUnitPrice(unitPric);
+			products.setUnitPrice(unitPrice);
 			products.setDamageQty(damageQty);
 			products.setMinOrderQty(minOrderQty);
 			products.setQty(qty);
-			products.setSupplierID(supplierID);			
-			productDAO.insertProduct(products);
-			
-			ArrayList<Products> list = productDAO.selectProduct();
-	        request.setAttribute("list", list);			
-	        request.getRequestDispatcher("productDetail.jsp").forward(request,
-	                response);
+			products.setSupplierID(supplierID);
+			supplierDAO supplierDAO = new supplierDAO();
+			ArrayList<Supplier> sList = supplierDAO.selectSupplier();
+			request.setAttribute("sList", sList);
+			productDAO.updateProduct(products,productID);
+			products  = new Products();
+			products = productDAO.selectProductsByID(productID);
+			request.getSession().setAttribute("products", products);
+			request.getRequestDispatcher("productDetail.jsp").forward(request,response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+	
 
 }

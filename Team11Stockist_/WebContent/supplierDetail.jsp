@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%ArrayList<Products> list =(ArrayList<Products>) (request.getAttribute("list")); %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -29,9 +30,7 @@
             
         }
     </script>
-    
 	<meta charset="utf-8" />
-	
 	<link rel="icon" type="image/png" href="../assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
@@ -95,6 +94,7 @@
 </head>
 <body>
  <jsp:useBean id="users" class="model.Users" scope="session" />
+ <jsp:useBean id="supplier" class="model.Supplier" scope="session" />
 <div class="wrapper">
     <div class="sidebar" data-color="orange" data-image="../assets/img/full-screen-image-3.jpg">
         <!--
@@ -274,142 +274,71 @@
         
         <!-- Main Content in put here -->
         <!-- Main Content in put here -->
-        <div class="content">
-           <div class="col-md-12">
-                    <div class="card">
-                       
+       <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Edit Supplier</h4>
+                            </div>
                             <div class="content">
-                                <legend>Add New Products</legend>
-
+                            
+                               <form action="supplierUpdateServlet" method="post" name="Form">
                                 
-                                <!-- ADD -->
-                                <form  id="allInputsFormValidation" class="form-horizontal" action="productAddServlet" metohd="post" >
-                                <fieldset>
-                                <div class="col-md-6">
-                                 <div class="form-group">
-                                 <label>partNO</label>                                                
-                                 <input type="text"  name="min" min="6" name="partNO" class="form-control" placeholder="partNO" />                                        
-                                 </div>
-                                </div>
-                                 </fieldset>
-                                <fieldset>
-                                <div class="col-md-6" >
-                                 <div class="form-group">
-                                 <label>productName</label>                                                
-                                 <input type="text" name="productName" class="form-control" placeholder="productName" />                                        
-                                 </div>
-                                </div>
-                                </fieldset>
-                                <fieldset>
-                                 <div class="col-md-6">
-                                 <div class="form-group">
-                                 <label>unitPrice</label>                                           
-                                 <input type="text" number="true" name="unitPrice" class="form-control" placeholder="unitPrice" />                                        
-                                 </div>
-                                </div>
-                                 </fieldset>
-                                <fieldset>
-                                 <div class="col-md-6" >
-                                 <div class="form-group">
-                                 <label>supplierID</label>                                                
-                                 <input type="text" number="true" name="supplierID" class="form-control" placeholder="supplierID" />                                        
-                                 </div>
-                                </div>
-                                </fieldset>
-                                <fieldset>
-                              <div class="col-md-6">
-                                 <div class="form-group">
-                                  <label>shelfLocation</label>                                                
-                                 <input type="text" name="shelfLocation" class="form-control" placeholder="shelfLocation" /> 
-                                                                        
-                                 </div>
-                                </div>
-                                 </fieldset>
-                                <fieldset>
-                                <div class="col-md-6" >
-                                 <div class="form-group">
-                                 <label>color</label>                                                
-                                 <input type="text" name="color" class="form-control" placeholder="color" />                                        
-                                 </div>
-                                </div>
-                                </fieldset>
-                                <fieldset>
-                                <div class="col-md-6">
-                                 <div class="form-group">
-                                 <label>dimension</label>                                                
-                                 <input type="text" name="dimension" class="form-control" placeholder="dimension" />                                        
-                                 </div>
-                                </div>
-                                 </fieldset>
-                                <fieldset>
-                                <div class="col-md-6">
-                                 <div class="form-group">
-                                 <label>manufacturer</label>                                                
-                                 <input type="text" name="manufacturer" class="form-control" placeholder="manufacturer" />                                        
-                                 </div>
-                                </div>
-                                </fieldset>
-                                <fieldset>
-                                 <div class="col-md-6">
-                                 <div class="form-group">
-                                 <label>reorderLevel</label>                                                
-                                 <input type="text" name="reorderLevel" class="form-control" placeholder="reorderLevel" />                                        
-                                 </div>
-                                </div>
-                                 </fieldset>
+                                     <div class="row">
+                                    <fieldset>
+                                      
+                                        
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>SupplierName</label>                                                
+                                                <input type="text" name="min" min="6" name="supplierName" class="form-control" placeholder="SupplierName" value="<%=supplier.getSupplierName()%>" />
+                                         </div>
+                                            </div>
+                                      
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>ContactNumber</label>
+                                                <input type="text" name="contactNumber" class="form-control" placeholder="ContactNumber" value = "<%=supplier.getContactNumber()%>" />
+                                            </div>
+                                        </div>
+                                         </fieldset>
+                                       <fieldset>
+               
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input type="email" email="true" name="email" class="form-control" placeholder="Email" value="<%=supplier.getEmail()%>"/>
+                                               
+                                            </div>
+                                        </div>
+                                      
+                                    </fieldset>
                                    
-                                 
-                                <fieldset>
-                                <div class="col-md-6" >
-                                 <div class="form-group">
-                                 <label>minOrderQty</label>                                                
-                                 <input type="text" number="true" name="minOrderQty" class="form-control"  placeholder="minOrderQty" />
-                                                                        
-                                 </div>
-                                </div>
-                                </fieldset>
-                                <fieldset>
-                                 <div class="col-md-6">
-                                 <div class="form-group">
-                                 <label>qty</label>                                                
-                                 <input type="text" number="true" name="qty" class="form-control" placeholder="qty" />                                        
-                                 </div>
-                                </div>
-                                 </fieldset>
-                                <fieldset>
-                                <div class="col-md-6" >
-                                 <div class="form-group">
-                                 <label >damageQty</label>                                                
-                                 <input type="text" number="true" name="damageQty" class="form-control" placeholder="damageQty" />                                        
-                                 </div>                                 
-                                </div>
-                                </fieldset>
-                                <fieldset>
-                                <div class="col-md-12">
-                                 <div class="form-group">
-                                 <label>description</label>                                                
-                                 <input type="text" name="description" class="form-control" placeholder="description" />         
-                                 </div>
-                                </div>
-                                </fieldset>
-                                <fieldset>
-                                  
-                                  <div class="footer">
-                                <button class="btn btn-info btn-fill" type="submit" name="add" title="Add" style="width:200px"> 
-                             Add New Product</button>
-                             </div>
-                             <div class="footer">
-                                <button class="btn btn-info"  type="button" name="back" title="BACK" style="width:200px"> 
-                            <a href="productViewServlet">BACK</a>
-                             </button>
-                             </div>
-                             <fieldset>
-                             
-                                </form>
-                 
-                </div>
-                </div>
+                                   
+                                         <fieldset>
+                                       <div class="col-md-5">
+                                            <div class="form-group">
+                                                
+                                               <input type="hidden" name="supplierID" class="form-control" placeholder="SupplierID" value="<%=supplier.getSupplierID()%>"/>  
+                                            <button type="submit" class="btn btn-info btn-fill ">Update Profile</button>
+                                   
+                                            </div>
+                                        </div>
+                                         </fieldset>
+                                    </div>
+                                    <fieldset>
 
+                                   
+                                 </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                   
+
+                </div>
             </div>
         </div>
          <!-- Main Content in put here -->
@@ -576,7 +505,7 @@
             demo.initCharts();
         });
     </script>
-    <script type="text/javascript">
+     <script type="text/javascript">
         $().ready(function(){
 
             $('#registerFormValidation').validate();

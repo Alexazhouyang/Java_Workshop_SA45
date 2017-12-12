@@ -15,7 +15,7 @@ public class supplierDAO {
 	 * update supplier information
 	 */
 	
-	public void updateSupplier(Supplier user) {
+	public void updateSupplier(Supplier user,int supplierID) {
 		
 		DBHelper dbHelper = new DBHelper();
 		String sql = "";
@@ -31,7 +31,7 @@ public class supplierDAO {
 			+"',contactNumber='"
 			+ user.getContactNumber()
 			+"',email='"
-			+ user.getEmail()+"' WHERE supplierID="+ user.getSupplierID();
+			+ user.getEmail()+"' WHERE supplierID="+ supplierID;
 			
 			statement.executeUpdate(sql);				
 			} catch (SQLException e) {
@@ -102,6 +102,42 @@ public class supplierDAO {
 			}
 			return list;
 		}
+		
+		/**
+		 * select supplier information
+		 * @param userid
+		 
+		 * @return
+		 */
+			public Supplier selectSupplierByID(int supplierID) {
+				DBHelper dbHelper = new DBHelper();
+				String sql = "";
+				Connection connection = null;
+				Statement statement = null;
+				ResultSet rs = null;	
+				Supplier supplier =new Supplier();
+				
+				try {
+					connection = dbHelper.initDB();
+					statement =connection.createStatement();
+					sql="SELECT * FROM supplier WHERE supplierID ="+ supplierID;
+							rs = statement.executeQuery(sql);
+							while (rs.next()) {	
+								supplier = new Supplier();
+								supplier.setSupplierID(supplierID);
+								supplier.setSupplierName(rs.getString("supplierName"));
+								supplier.setContactNumber(rs.getString("contactNumber"));
+								supplier.setEmail(rs.getString("email"));
+											
+							}
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				return supplier;
+			}
+			
+			
 		public ArrayList<Supplier> selectSupplierByName(String supplierName) {
 			DBHelper dbHelper = new DBHelper();
 			String sql = "";
