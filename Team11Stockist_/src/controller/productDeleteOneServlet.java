@@ -45,7 +45,7 @@ public class productDeleteOneServlet extends HttpServlet {
 	}
 
 	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int userId = Integer.parseInt(request.getParameter("userId"));
+		int userId = Integer.parseInt(request.getParameter("productID"));
 		productDAO productDAO = new productDAO();
 		productDAO.deleteoneProducts(userId);
         

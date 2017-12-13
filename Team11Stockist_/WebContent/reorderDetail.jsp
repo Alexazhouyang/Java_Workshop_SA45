@@ -262,7 +262,7 @@
                             
                             </div></div>
                             
-                            <h4 class="pull-left" style="margin:20px" >ReOder Date:<%=reorderDetail.getOrderDate()%></h4>
+                            <h4 class="pull-left" style="margin:20px" >ReOder :</h4>
 
                            <button class=" btn pull-right"  style="margin:20px" type="button" name="refresh" title="Refresh" >
                             <a href="reorderViewServlet"><font color="gray"> BACK >> </font></a>

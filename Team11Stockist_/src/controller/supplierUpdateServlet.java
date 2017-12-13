@@ -29,23 +29,26 @@ public class supplierUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int supplierID = Integer.parseInt(request.getParameter("supplierID"));
-		supplierDAO supplierDAO = new supplierDAO();
-		Supplier supplier = new Supplier();
-		
-		supplierDAO.updateSupplier(supplier, supplierID);
-		
-		supplier = supplierDAO.selectSupplierByID(supplierID);		
-		request.getSession().setAttribute("supplier", supplier);
-		request.getRequestDispatcher("supplierDetail.jsp").forward(request,response);
+		doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		int supplierID = Integer.parseInt(request.getParameter("supplierID"));
+		supplierDAO supplierDAO = new supplierDAO();
+		Supplier supplier = new Supplier();
+		supplier.setSupplierName(request.getParameter("supplierName"));
+		supplier.setEmail(request.getParameter("email"));
+		supplier.setContactNumber(request.getParameter("contactNumber"));
+		
+		supplierDAO.updateSupplier(supplier, supplierID);
+		supplier.setSupplierID(supplierID);
+		
+		supplier = supplierDAO.selectSupplierByID(supplierID);		
+		request.getSession().setAttribute("supplier", supplier);
+		request.getRequestDispatcher("supplierDetail.jsp").forward(request,response);
 	}
 
 }

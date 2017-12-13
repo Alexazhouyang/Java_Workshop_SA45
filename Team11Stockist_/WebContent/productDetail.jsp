@@ -284,7 +284,7 @@
                             </div>
                             <div class="content">
                             
-                               <form action="productUpdateServlet" method="post" name="Form">
+                               <form action="productUpdateServlet" method="post" name="Form" id="allInputsFormValidation">
                                 
                                      <div class="row">
                                     <fieldset>
@@ -293,7 +293,7 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>PartNO</label>                                                
-                                                <input type="text" name="min" min="6" name="partNO" class="form-control" placeholder="PartNO" value="<%=products.getPartNO()%>" />
+                                                <input type="text"  name="partNO" class="form-control" placeholder="PartNO" value="<%=products.getPartNO()%>" />
                                          </div>
                                             </div>
                                       
@@ -413,7 +413,7 @@
                                             </div>
                                         </div>
                                          <div class="footer">
-                                <button class="btn btn-info"  type="button" name="back" title="BACK" style="width:200px"> 
+                                <button class="btn btn-info pull-left"  type="button" name="back" title="BACK" style="width:100px"> 
                             <a href="productViewServlet">BACK</a>
                              </button>
                              </div>

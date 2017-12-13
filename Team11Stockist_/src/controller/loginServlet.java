@@ -54,7 +54,7 @@ public class loginServlet extends HttpServlet {
 		String check = userDAO.judgeUserPassword(userName);
 		//judge user exist?
 		
-		String message = "username or password error!"+userName+password;
+		String message = "username or password error!";
 		if(check.equals(password))
 		{
 			int userid = userDAO.FindID(userName);			

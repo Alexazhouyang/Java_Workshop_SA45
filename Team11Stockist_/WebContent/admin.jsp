@@ -262,7 +262,8 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Role</label>
-                                                <input type="text" name="role" class="form-control" placeholder="Role" value="<%=users.getRole() %>"/>
+                                                <input type="text" name="role" class="form-control" disabled placeholder="Role" value="<%=users.getRole() %>"/>
+                                                <input type="hidden" name="role" class="form-control" placeholder="Role" value="<%=users.getRole() %>"/>
                                             </div>
                                         </div>
                                         <div class="col-md-3">

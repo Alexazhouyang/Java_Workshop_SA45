@@ -71,12 +71,13 @@ public class usageIssueServlet extends HttpServlet {
 			int userID = uDao.FindID(userName);
 			int mechID = mDao.selectMech(users, userID).getMechID();
 			tran.setMechID(mechID);
-			tDao.insertTran(tran);
+			
 			if(qty >= usage)
 			{
 			qty = qty - usage;
 			products.setQty(qty);
-			pDao.updateQty(productID, qty);;
+			pDao.updateQty(productID, qty);
+			tDao.insertTran(tran);
 			}
 			
 			request.setAttribute("mechID", mechID);

@@ -330,13 +330,13 @@
                                 </tbody>
                                 </table>
                                 <table>
-                            <form action="usageIssueServlet" method="post" >
+                            <form action="usageIssueServlet" method="post" id="allInputsFormValidation" >
                             <div class="col-md-4 " style="margin:20px;">
-                            <div class="">
+                            <div class="" >
                             <label >Usage Quantity:</label> 
                              <input type="hidden" name="userName" value="<%=users.getUsername() %>">     
                              <input type="hidden" name="productID" value="<%=products.getProductID()%>">                        
-                            <input type="text" name="usage" class=" form-control" style="width:300px" placeholder="Input usage Quantity(int)" />
+                            <input type="text" number="true" name="usage" class=" form-control" style="width:300px" placeholder="Input usage Quantity(int)" />
                             </div>
                             <div></div>
                             <div style="margin:20px 0 0 0">
@@ -533,7 +533,15 @@
             demo.initCharts();
         });
     </script>
+ <script type="text/javascript">
+        $().ready(function(){
 
+            $('#registerFormValidation').validate();
+            $('#loginFormValidation').validate();
+            $('#allInputsFormValidation').validate();
+
+        });
+    </script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -290,7 +290,7 @@
                                 <div class="col-md-6">
                                  <div class="form-group">
                                  <label>partNO</label>                                                
-                                 <input type="text"  name="min" min="6" name="partNO" class="form-control" placeholder="partNO" />                                        
+                                 <input type="text"   name="partNO" class="form-control" placeholder="partNO" />                                        
                                  </div>
                                 </div>
                                  </fieldset>

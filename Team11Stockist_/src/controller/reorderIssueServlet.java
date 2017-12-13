@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,9 +33,12 @@ public class reorderIssueServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int userId = Integer.parseInt(request.getParameter("productID"));
+		String orderDate;
 		productDAO productDAO = new productDAO();
 		Products products = new Products();
 		products = productDAO.selectProductsByID(userId);
+		
+		
 		request.getSession().setAttribute("products", products);
 		request.getRequestDispatcher("reorderDetail.jsp").forward(request,response);
 	}

@@ -293,7 +293,7 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>SupplierName</label>                                                
-                                                <input type="text" name="min" min="6" name="supplierName" class="form-control" placeholder="SupplierName" value="<%=supplier.getSupplierName()%>" />
+                                                <input type="text"  name="supplierName" class="form-control" placeholder="SupplierName" value="<%=supplier.getSupplierName()%>" />
                                          </div>
                                             </div>
                                       
@@ -309,7 +309,7 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Email</label>
-                                                <input type="email" email="true" name="email" class="form-control" placeholder="Email" value="<%=supplier.getEmail()%>"/>
+                                                <input type="email" name="email" class="form-control" placeholder="Email" value="<%=supplier.getEmail()%>"/>
                                                
                                             </div>
                                         </div>
@@ -326,8 +326,9 @@
                                    
                                             </div>
                                         </div>
+                                        </form>
                                          <div class="footer">
-                                <button class="btn btn-info"  type="button" name="back" title="BACK" style="width:200px"> 
+                                <button class="btn btn-info pull-left"  type="button" name="back" title="BACK" style="width:100px"> 
                             <a href="supplierViewServlet">BACK</a>
                              </button>
                              </div>
@@ -337,7 +338,7 @@
 
                                    
                                  </fieldset>
-                                </form>
+                                
                             </div>
                         </div>
                     </div>
